@@ -5,11 +5,15 @@ module.exports = {
   root: true,
   'extends': [
     'plugin:vue/vue3-essential',
-    'eslint:recommended',
+    // 'eslint:recommended',
     '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier'
+    // '@vue/eslint-config-prettier'
   ],
   parserOptions: {
     ecmaVersion: 'latest'
-  }
+  },
+  rules: {
+    'quotes': ['error', 'single'],
+    'comma-dangle': ['warn', 'always-multiline'],
+  },
 }
