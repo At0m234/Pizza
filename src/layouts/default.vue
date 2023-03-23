@@ -9,8 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-// import CustomFooter from '@/containers/custom-footer/CustomFooter.vue'
-
 import CustomHeader from '@/components/CustomHeader.vue';
 import CustomFooter from '@/components/CustomFooter.vue';
 </script>
