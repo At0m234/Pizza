@@ -50,6 +50,12 @@
   }
 }
 
+/* Variables*/
+:root{
+  --color-warning: #FF6161;
+  --color-light-gray: #E8E8E8;
+  --color-text-gray: #676666;
+}
 *,
 *::before,
 *::after {
