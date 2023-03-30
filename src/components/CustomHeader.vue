@@ -86,7 +86,7 @@ function onCartClick() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 15px 30px;
   margin: auto;
   &__wrapper {
       width: 100%;

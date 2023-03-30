@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import CustomCarousel from '@/components/CustomCarousel.vue'
+import MenuIcons from '@/components/MenuIcons.vue'
+
 </script>
 
 <template>
-  <main>
-    <h1>home</h1>
-  </main>
+  <custom-carousel/>
+  <menu-icons/>
 </template>

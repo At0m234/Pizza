@@ -4,7 +4,7 @@
     <main class="content">
       <slot/>
     </main>
-    <custom-footer/>
+    <custom-footer class="layout__footer"/>
   </div>
 </template>
 
@@ -15,19 +15,16 @@ import CustomFooter from '@/components/CustomFooter.vue';
 
 <style scoped>
 .layout {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  /*display: flex;*/
+  /*flex-direction: column;*/
   min-height: calc(100vh - 80px);
-
 }
 
 .content {
   max-width: 1440px;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  margin: auto;
+  min-height: 60vh;
+  padding: 20px 40px;
 }
 
 main {
@@ -35,6 +32,5 @@ main {
   width: 100%;
   height: 100%;
 }
-
 
 </style>
