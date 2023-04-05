@@ -25,6 +25,7 @@ import CustomFooter from '@/components/CustomFooter.vue';
   height: 100%;
   min-height: 60vh;
   padding: 20px 40px;
+  margin: auto;
 }
 
 main {
