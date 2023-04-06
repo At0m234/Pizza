@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 import 'element-plus/dist/index.css'
+import '@/assets/element.overwite..scss'
 import LayoutDefault from '@/layouts/default.vue'
 // import LayoutEmpty from '@/layouts/empty.vue'
 

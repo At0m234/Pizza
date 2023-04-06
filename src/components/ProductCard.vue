@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import {defineProps, reactive, ref, watch} from 'vue'
+import {computed, defineProps, reactive, ref, watch} from 'vue'
 import pizzaImg from '@/assets/img/4.jpg'
-import {Plus} from '@element-plus/icons-vue'
+import { Plus } from '@element-plus/icons-vue'
+import ToppingPopover from '@/components/ToppingPopover.vue'
 
 const props = defineProps({
   data: Object,
 })
 const state = reactive({
   title: 'Пицца Цезарь',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquam asperiores atque, culpa doloremque\n' +
-      '    eaque fuga fugiat fugit hic, inventore iure natus praesentium quaerat quas quia reprehenderit sint sunt.',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
   size: {
     small: '20см',
     big: '35см',
@@ -18,85 +18,102 @@ const state = reactive({
   topping: {
     sum: 0,
     added: [],
+    list: [
+      {
+        name: 'Хапапеньо',
+        value: 0,
+      },
+      {
+        name: 'Сыр',
+        value: 0,
+      },
+      {
+        name: 'Бекон',
+        value: 0,
+      },
+      {
+        name: 'Грибы',
+        value: 0,
+      },
+    ],
   },
   price: 500,
   count: 1,
   weight: 300,
+  toppingsSum: 0,
 })
 
+const totalPrice = computed(()=>{
+  return (state.price + state.toppingsSum) * state.count
+})
 function setActive(size: string) {
-  state.activeSize = size;
+  state.activeSize = size
 }
 
 function onCardClick() {
-  console.log('###### onCardClick',)
+  console.log('###### onCardClick')
 }
 
-function onCloseTag() {
-  state.topping.sum = 0
-  console.log('###### onCloseTag',)
+function addToCart() {
+  console.log('###### addToCart')
+}
+function updateToppings(val: number) {
+  state.toppingsSum = val
+  console.log('###### updateToppings', val)
 }
 
-function addTopping(){
-  state.topping.sum = state.topping.sum + 1
-  console.log('###### addToping', )
-}
-function addToCart(){
-  console.log('###### addToCart', )
-}
 </script>
 
 <template>
   <div class="card">
-    <img :src="pizzaImg" alt="img" class="image"/>
+    <img :src="pizzaImg" alt="img" class="image" />
     <h1 class="title" type="info" @click="onCardClick">{{ state.title }}</h1>
     <p class="description">{{ state.description }}</p>
-    <div class="topping">Ингридиенты:
-      <el-tag
-          type="success"
-          closable
-          @close="onCloseTag"
-          disable-transitions
-      > {{state.topping.sum}}
-      </el-tag>
-      <el-button :icon="Plus" circle size="small" @click="addTopping"/>
-    </div>
+
+    <topping-popover
+        @update-sum="updateToppings"
+    />
+
     <el-button-group>
       <el-button
-          class="button"
-          :type="state.activeSize === 'small' ? 'info' : '' "
-          @click.stop="setActive('small')"
-      >{{ state.size.small }}
+        class="button"
+        :type="state.activeSize === 'small' ? 'info' : ''"
+        @click.stop="setActive('small')"
+        >{{ state.size.small }}
       </el-button>
+
       <el-button
-          class="button"
-          :type="state.activeSize === 'big' ? 'info' : '' "
-          @click.stop="setActive('big')"
-      >{{ state.size.big }}
+        class="button"
+        :type="state.activeSize === 'big' ? 'info' : ''"
+        @click.stop="setActive('big')"
+        >{{ state.size.big }}
       </el-button>
+
     </el-button-group>
     <div class="bottom">
-      <p class="weight">{{state.weight}} гр.</p>
-      <b class="price">{{state.price}} ₽</b>
-      <el-input-number class="count" v-model="state.count" :min="1" :max="99" @change="handleChange" />
-      <div>
-
-      </div>
+      <p class="weight">{{ state.weight }} гр.</p>
+      <b class="price">{{ totalPrice }} ₽</b>
+      <el-input-number
+        class="count"
+        v-model="state.count"
+        :min="1"
+        :max="99"
+      />
+      <div></div>
     </div>
     <el-button
-        type="danger"
-        :icon="Plus"
-        plain
-        @click="addToCart"
-        class="to-cart"
-
-    >В корзину</el-button>
+      type="danger"
+      :icon="Plus"
+      plain
+      @click="addToCart"
+      class="to-cart"
+      >В корзину
+    </el-button>
   </div>
 </template>
 
 <style scoped lang="scss">
 .card {
-  border: 1px solid palevioletred;
   max-width: 302px;
   display: flex;
   flex-direction: column;
@@ -109,10 +126,10 @@ function addToCart(){
   font-size: 18px;
   font-weight: 700;
   border-bottom: #e0ded8 solid 1px;
+  cursor: pointer;
 }
 
 .image {
-
 }
 
 .button {
@@ -120,35 +137,32 @@ function addToCart(){
   padding-right: 30px;
 }
 
-.topping {
-  font-size: 14px;
-  font-weight: 600;
-  display: inline-flex;
-  gap: 10px;
-}
-
-.bottom{
- display: grid;
- grid-template-areas: 'weight count' 'price count';
+.bottom {
+  display: grid;
+  grid-template-areas: 'weight count' 'price count';
   column-gap: 15px;
 }
 
-.weight{
+.weight {
   color: #8b8781;
   font-size: 12px;
   grid-area: weight;
 }
-.price{
+
+.price {
   grid-area: price;
   font-weight: 700;
   font-size: 28px;
+  line-height: 1;
 }
-.count{
+
+.count {
   grid-area: count;
   height: 30px;
   place-self: center;
 }
-.to-cart{
+
+.to-cart {
   width: 85%;
 }
 </style>

@@ -1,0 +1,17 @@
+.el-input-number .el-input__wrapper {
+  padding-left: 22px;
+   padding-right: 22px;
+}
+
+.el-input__wrapper{
+ flex-grow: 0;
+}
+
+.el-input-number__decrease {
+  width: 24px;
+}
+
+.el-input-number__increase {
+  right: 63px;
+  width: 24px;
+}
