@@ -89,7 +89,7 @@ function onMenuItemClick(value: string){
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding: 0 100px;
+  padding: 50px 100px;
 
   &__item {
     display: flex;
