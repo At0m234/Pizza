@@ -39,7 +39,7 @@ function onPhoneClick(){
 <template>
   <footer class="footer__wrapper">
     <div class="footer">
-      <div class="category">
+      <div class="category category_type_menu">
         <h3 class="category__title">Меню</h3>
         <ul class="category__wrapper category__menu">
           <li
@@ -49,7 +49,7 @@ function onPhoneClick(){
               @click="onMenuClick(item.value)">{{item.label}}</li>
         </ul>
       </div>
-      <div class="category">
+      <div class="category category_type_info">
         <h3 class="category__title">Информация</h3>
         <ul class="category__wrapper">
           <li
@@ -59,7 +59,7 @@ function onPhoneClick(){
               @click="onMenuClick(item.value)">{{item.label}}</li>
         </ul>
       </div>
-      <div class="category">
+      <div class="category category_type_personal-account">
         <h3 class="category__title">Личный кабинет</h3>
         <ul class="category__wrapper">
           <li
@@ -70,7 +70,7 @@ function onPhoneClick(){
               @click="onMenuClick(item.value)">{{item.label}}</li>
         </ul>
       </div>
-      <div class="category">
+      <div class="category category_type_contacts">
         <h3 class="category__title">Контакты</h3>
         <div class="phone">
           <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
@@ -85,8 +85,8 @@ function onPhoneClick(){
 
 <style lang="scss" scoped>
 .footer {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   max-width: 1440px;
   margin: auto;
   &__wrapper {
@@ -95,11 +95,11 @@ function onPhoneClick(){
   }
 }
 .category {
- &__wrapper{
-   padding: 0;
-   display: grid;
-   gap: 15px;
- }
+  &__wrapper{
+    padding: 0;
+    display: grid;
+    gap: 15px;
+  }
 
   &__title {
     font-weight: 700;
@@ -110,7 +110,7 @@ function onPhoneClick(){
     color: var(--color-text-gray);
     list-style: none;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     &:hover {
       text-decoration: underline;
@@ -128,13 +128,13 @@ function onPhoneClick(){
 .phone {
   display: flex;
   flex-direction: column;
-
   &__number {
     font-size: 20px;
     font-weight: bold;
     color: var(--color-text);
     &:hover {
       background-color: transparent;
+      color: var(--color-warning);
     }
   }
 
@@ -142,7 +142,37 @@ function onPhoneClick(){
     cursor: pointer;
     color: var(--color-warning);
     text-decoration: underline;
-    margin-left: 20px;
+    margin-top: 20px;
   }
 }
+
+@media (max-width: 1000px) {
+  .category__menu {
+    grid-template-columns: minmax(80px, 80px) 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .category_type_menu {
+    display: none;
+  }
+
+
+  .category__menu {
+    grid-template-columns: minmax(60px, 60px) 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .category_type_personal-account {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .category_type_contacts {
+    display: none;
+  }
+}
+
 </style>
