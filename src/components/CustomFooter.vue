@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {HEAD_CONST} from '@/constants'
+import router from '../router';
 
 const menu = [
   {label: 'Пицца', value: 'pizza'},
@@ -26,12 +27,16 @@ const personal = [
   {label: 'Отзывы', value: 'reviews'},
 ]
 
-function onMenuClick(v){
+function onMenuClick(v: any){
   console.log('###### onMenuClick', v)
 }
 
 function onPhoneClick(){
-  console.log('###### onPhoneClick', )
+  console.log('###### onPhoneClick' )
+}
+
+function onInfoClick(v: any) {
+  router.push('/' + v);
 }
 
 </script>
@@ -53,10 +58,12 @@ function onPhoneClick(){
         <h3 class="category__title">Информация</h3>
         <ul class="category__wrapper">
           <li
-              v-for="item of info"
-              class="category__item"
-              :key="item"
-              @click="onMenuClick(item.value)">{{item.label}}</li>
+            v-for="item of info"
+            class="category__item"
+            :key="item"
+            @click="onInfoClick(item.value)">
+            {{item.label}}
+          </li>
         </ul>
       </div>
       <div class="category category_type_personal-account">
