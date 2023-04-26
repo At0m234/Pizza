@@ -23,15 +23,15 @@ import CustomFooter from '@/components/CustomFooter.vue';
 .content {
   max-width: 1440px;
   height: 100%;
-  /* min-height: 60vh; */
+  min-height: 60vh;
   padding: 20px 40px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-/* main {
+main {
   display: grid;
   width: 100%;
   height: 100%;
-} */
+}
 
 </style>

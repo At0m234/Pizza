@@ -26,7 +26,6 @@ import fiveImg from '@/assets/img/500/five.svg';
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg-color-white);
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
