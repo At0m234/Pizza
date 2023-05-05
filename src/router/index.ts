@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import notFoundPage from '../views/notFoundPage.vue'
-import serverError from '../views/serverError.vue'
-import aboutCompany from '../components/aboutCompany.vue'
+import View404 from '../views/404View.vue'
+import View500 from '../views/500View.vue'
+import AboutCompanyView from '../views/AboutCompanyView.vue'
+import DeliveryView from '../views/DeliveryView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,19 +14,24 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/delivery',
+      name: 'delivery',
+      component: DeliveryView,
+    },
+    {
       path: '/about',
       name: 'about',
-      component: aboutCompany,
+      component: AboutCompanyView,
     },
     {
       path: '/500',
       name: 'serverError',
-      component: serverError,
+      component: View500,
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'notFoundPage',
-      component: notFoundPage,
+      component: View404,
     },
   ],
 })
