@@ -83,6 +83,18 @@ function onInfoClick(v: any) {
           <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
             {{ HEAD_CONST.PHONE }}
           </a>
+          <div class="category__socials">
+            <a href="https://wa.me/74999999999" target="_blank">
+              <img src='../assets/img/footer/whatsUp.svg' alt="whatsUp"/>
+            </a>
+            <a href="https://instagram.com" target="_blank">
+              <img src='../assets/img/footer/instagram.svg' alt="instagram"/>
+            </a>
+            <a href="https://vk.com" target="_blank">
+              <img src='../assets/img/footer/vk.svg' alt="vk"/>
+            </a>
+          </div>
+          
           <span class="phone__feedback" @click="onPhoneClick">Перезвоните мне</span>
         </div>
       </div>
@@ -129,6 +141,16 @@ function onInfoClick(v: any) {
   &__menu {
     display: grid;
     grid-template-columns: minmax(80px, 120px) 1fr;
+  }
+  &__socials {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    transition: opacity 0.3s ease-in-out 0.3s;
+    cursor: pointer;
+    :hover {
+      opacity: .5;
+    }
   }
 }
 
