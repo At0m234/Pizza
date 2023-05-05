@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-const shipping = '@/assets/img/delivery/shipping.svg'
-const clock = '@/assets/img/delivery/clock.svg'
-const card = '@/assets/img/delivery/card.svg'
-const pizza = '@/assets/img/delivery/pizza.svg'
+const shipping = 'src/assets/img/delivery/shipping.svg'
+const clock = 'src/assets/img/delivery/clock.svg'
+const card = 'src/assets/img/delivery/card.svg'
+const pizza = 'src/assets/img/delivery/pizza.svg'
 
 const delivery = [
   {
