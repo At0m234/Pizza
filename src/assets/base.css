@@ -56,10 +56,12 @@
   --color-yellow: #F5BB40;
   --color-light-gray: #E8E8E8;
   --color-text-gray: #676666;
+  --color-text-white: #ffffff;
   --color-text-black: #000000;
   --color-icon-gray: #484848;
   --color-gray-main: #333;
   --bg-color-white: #F5F5F5;
+  --bg-popup-promo: #66A486;
   --border-discount-card: #F2EEEE;
 }
 *,
