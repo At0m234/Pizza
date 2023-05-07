@@ -90,6 +90,8 @@ export default {
     display: flex;
     width: 295px;
     height: 330px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
   }
   &__content {
     display: flex;
