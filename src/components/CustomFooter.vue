@@ -35,8 +35,8 @@ function onPhoneClick(){
   console.log('###### onPhoneClick' )
 }
 
-function onInfoClick(v: any) {
-  router.push('/' + v);
+function onInfoClick(value: any) {
+  router.push('/' + value);
 }
 
 </script>
@@ -48,10 +48,10 @@ function onInfoClick(v: any) {
         <h3 class="category__title">Меню</h3>
         <ul class="category__wrapper category__menu">
           <li
-              v-for="item of menu"
-              class="category__item"
-              :key="item"
-              @click="onMenuClick(item.value)">{{item.label}}</li>
+            v-for="item of menu"
+            class="category__item"
+            :key="item"
+            @click="onMenuClick(item.value)">{{item.label}}</li>
         </ul>
       </div>
       <div class="category category_type_info">
@@ -72,9 +72,10 @@ function onInfoClick(v: any) {
           <li
               v-for="item of personal"
               class="category__item"
-              :class="{'category__item_active' : item.value === 'discount'}"
               :key="item"
-              @click="onMenuClick(item.value)">{{item.label}}</li>
+              @click="onInfoClick(item.value)">
+              {{item.label}}
+            </li>
         </ul>
       </div>
       <div class="category category_type_contacts">
@@ -131,12 +132,6 @@ function onInfoClick(v: any) {
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
-    &_active {
-      color: var(--color-warning)
-    }
   }
   &__menu {
     display: grid;
