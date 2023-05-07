@@ -5,6 +5,7 @@ import View500 from '../views/500View.vue'
 import AboutCompanyView from '../views/AboutCompanyView.vue'
 import DeliveryView from '../views/DeliveryView.vue'
 import DiscountView from '../views/DiscountView.vue'
+import ShoppingСartView from '../views/ShoppingСartView.vue'
 import DiscountCard from '../components/UI/DiscountCard.vue'
 
 const router = createRouter({
@@ -26,12 +27,17 @@ const router = createRouter({
       component: AboutCompanyView,
     },
     {
-      path: '/discount',
+      path: '/shopping-cart',
+      name: 'ShoppingСart',
+      component: ShoppingСartView,
+    },
+    {
+      path: '/discounts',
       name: 'discount',
       component: DiscountView,
     },
     {
-      path: '/discount/:idCard',
+      path: '/discounts/:idCard',
       name: 'DiscountCard',
       component: DiscountCard,
       props: true,
