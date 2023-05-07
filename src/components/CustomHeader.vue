@@ -2,9 +2,13 @@
 import Logo from '@/assets/img/logo_big.svg?component'
 import Clock from '@/assets/icon/clock.svg?component'
 import Cart from '@/assets/icon/cart.svg?component'
+import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
+import instagram from '@/assets/img/footer/instagram.svg?component'
+import vk from '@/assets/img/footer/vk.svg?component'
 import {HEAD_CONST} from '@/constants'
 import router from '../router';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+
 
 const menu = [
   {
@@ -59,6 +63,11 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', onResize);
 });
 
+let isMenuOpen = false;
+
+function toggleMenu() {
+  isMenuOpen = !isMenuOpen;
+}
 </script>
 
 <template>
@@ -129,25 +138,87 @@ onBeforeUnmount(() => {
       </template> 
 
       <template v-if="screenWidth <= 660">
-        <select class="burger-menu__select">
-          <option 
-            v-for="item in menu"
-            class="burger-menu__option"
-            :key="item.value"
-            @click="onMenuClick(item.value)"
-          >
-            {{ item.label }}
-          </option>
-          </select>
-          <Logo class="header__logo" @click="onLogoClick"/>
-          <cart class="menu__item" @click="onCartClick"/>
+        <div class="burger-menu">
+          <button class="burger-menu__button" @click="toggleMenu"></button>
+
+          <ul class="burger-menu__list" v-show="isMenuOpen">
+            <li v-for="item in menu" :key="item.value">
+              <a class="burger-menu__link" @click="onMenuClick(item.value)">
+                {{ item.label }}
+              </a>
+            </li>
+            <div class="category category_type_contacts">
+              <div class="phone">
+                <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
+                  {{ HEAD_CONST.PHONE }}
+                </a>
+                <div class="category__socials">
+                  <a class="category__socials-link" href="https://wa.me/74999999999" target="_blank">
+                    <whatsUp/>
+                  </a>
+                  <a class="category__socials-link" href="https://instagram.com" target="_blank">
+                    <instagram/>
+                  </a>
+                  <a class="category__socials-link" href="https://vk.com" target="_blank">
+                    <vk/>
+                  </a>
+                </div>
+                
+              </div>
+            </div>
+          </ul>
+
+        </div>
+        <Logo class="header__logo" @click="onLogoClick"/>
+        <cart class="menu__item" @click="onCartClick"/>
       </template>
-      
+
     </div>
   </header>
 </template>
 
 <style lang="scss" scoped>
+.burger-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/icon/burger-menu.svg');
+  background-repeat: no-repeat;
+  padding: 0;
+  width: 45px;
+  height: 45px;
+  &__button {
+    position: relative;
+    background-color: transparent;
+    border: none;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: 250px;
+    height: 420px;
+    list-style: none;
+    position: absolute;
+    padding: 20px;
+    top: 40px;
+    left: 0;
+    background: #FFFFFF;
+    border-radius: 0px 15px 15px 0px;
+    z-index: 2;
+  }
+  &__link {
+    width: 100%;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    color: var(--color-text-gray);
+    margin-bottom: 20px;
+    border-bottom: 1px solid #E7E7E7;
+  }
+}
 .header {
   max-width: 1440px;
   display: flex;
@@ -155,12 +226,16 @@ onBeforeUnmount(() => {
   align-items: center;
   padding: 15px 30px;
   margin: auto;
+
   &__wrapper {
     width: 100%;
     height: 100px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
+
   &__logo {
+    display: flex;
+    max-width: 170px;
     cursor: pointer;
     transition: transform .2s ease-in-out;
     &:hover {
@@ -170,11 +245,13 @@ onBeforeUnmount(() => {
   }
 }
 .info {
+
   &__delivery {
     display: flex;
     align-items: center;
     gap: 8px;
   }
+
   &__time {
     margin-left: 8px;
   }
@@ -185,12 +262,19 @@ onBeforeUnmount(() => {
 }
 
 .menu__item {
+  display: flex;
   cursor: pointer;
   font-weight: 600;
   transition: transform .2s ease-in-out;
+  color: var(--color-icon-gray);
+
   &:hover {
     color: var(--color-warning);
     transform: scale(1.15);
+
+    svg {
+        fill: var(--color-warning);
+      }
   }
 }
 .phone {
@@ -215,11 +299,21 @@ onBeforeUnmount(() => {
   }
 }
 
-.burger-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px;
+.category {
+  margin-top: 35px;
+  &__socials {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+    &__socials-link {
+    transition: opacity 0.15s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      opacity: .5;
+    }
+  }
 }
 
 @media (max-width: 780px) {
