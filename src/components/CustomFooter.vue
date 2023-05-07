@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import {HEAD_CONST} from '@/constants'
 import router from '../router';
+import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
+import instagram from '@/assets/img/footer/instagram.svg?component'
+import vk from '@/assets/img/footer/vk.svg?component'
 
 const menu = [
   {label: 'Пицца', value: 'pizza'},
@@ -85,14 +88,14 @@ function onInfoClick(value: any) {
             {{ HEAD_CONST.PHONE }}
           </a>
           <div class="category__socials">
-            <a href="https://wa.me/74999999999" target="_blank">
-              <img src='../assets/img/footer/whatsUp.svg' alt="whatsUp"/>
+            <a class="category__socials-link" href="https://wa.me/74999999999" target="_blank">
+              <whatsUp/>
             </a>
-            <a href="https://instagram.com" target="_blank">
-              <img src='../assets/img/footer/instagram.svg' alt="instagram"/>
+            <a class="category__socials-link" href="https://instagram.com" target="_blank">
+              <instagram/>
             </a>
-            <a href="https://vk.com" target="_blank">
-              <img src='../assets/img/footer/vk.svg' alt="vk"/>
+            <a class="category__socials-link" href="https://vk.com" target="_blank">
+              <vk/>
             </a>
           </div>
           
@@ -146,9 +149,11 @@ function onInfoClick(value: any) {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    transition: opacity 0.3s ease-in-out 0.3s;
+  }
+  &__socials-link {
+    transition: opacity 0.15s ease-in-out;
     cursor: pointer;
-    :hover {
+    &:hover {
       opacity: .5;
     }
   }
