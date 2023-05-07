@@ -22,7 +22,7 @@ const info = [
 ]
 const personal = [
   {label: 'Вход в личный кабинет', value: 'login'},
-  {label: 'Акции и промокоды', value: 'discount'},
+  {label: 'Акции и промокоды', value: 'discounts'},
   {label: 'Обратная связь', value: 'feedback'},
   {label: 'Отзывы', value: 'reviews'},
 ]
@@ -132,6 +132,11 @@ function onInfoClick(value: any) {
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
+    transition: transform .2s ease-in-out;
+    &:hover {
+      color: var(--color-warning);
+      transform: scale(1.15);
+    }
   }
   &__menu {
     display: grid;
@@ -156,8 +161,8 @@ function onInfoClick(value: any) {
     font-size: 20px;
     font-weight: bold;
     color: var(--color-text);
+    transition: color .2s ease-in-out;
     &:hover {
-      background-color: transparent;
       color: var(--color-warning);
     }
   }
