@@ -4,6 +4,8 @@ import View404 from '../views/404View.vue'
 import View500 from '../views/500View.vue'
 import AboutCompanyView from '../views/AboutCompanyView.vue'
 import DeliveryView from '../views/DeliveryView.vue'
+import DiscountView from '../views/DiscountView.vue'
+import DiscountCard from '../components/UI/DiscountCard.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +24,17 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: AboutCompanyView,
+    },
+    {
+      path: '/discount',
+      name: 'discount',
+      component: DiscountView,
+    },
+    {
+      path: '/discount/:idCard',
+      name: 'DiscountCard',
+      component: DiscountCard,
+      props: true,
     },
     {
       path: '/500',
