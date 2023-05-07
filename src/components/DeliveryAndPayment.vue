@@ -1,32 +1,32 @@
 <script setup lang="ts">
 
-const shipping = 'src/assets/img/delivery/shipping.svg'
-const clock = 'src/assets/img/delivery/clock.svg'
-const card = 'src/assets/img/delivery/card.svg'
-const pizza = 'src/assets/img/delivery/pizza.svg'
+import shipping from '@/assets/img/delivery/shipping.svg?component'
+import clock from '@/assets/img/delivery/clock.svg?component'
+import card from '@/assets/img/delivery/card.svg?component'
+import pizza from '@/assets/img/delivery/pizza.svg?component'
 
 const delivery = [
   {
     id: 1,
-    image: shipping,
+    icon: shipping,
     title: 'Бесплатная доставка',
     text: 'Бесплатная доставка по Москве от 500 рублей',
   },
   {
     id: 2,
-    image: clock,
+    icon: clock,
     title: '40 минут',
     text: 'Наше среднее время доставки составляет 40 минут, ваш заказ точно прибудет горячим',
   },
   {
     id: 3,
-    image: card,
+    icon: card,
     title: 'Три способа оплаты',
     text: 'Оплата заказа возможна наличными или банковской картой при получении, а также картой на сайте',
   },
   {
     id: 4,
-    image: pizza,
+    icon: pizza,
     title: 'График работы',
     text: 'Мы принимаем и доставляем заказы с 08:00 до 05:00',
   },
@@ -47,7 +47,7 @@ const delivery = [
           class="delivery__term"
           :key="item.id"
         >
-          <img class="term__image" :src="item.image" :alt="item.title"/>
+          <component :is="item.icon" class="term__image"/>
           <h2 class="term__title">{{ item.title }}</h2>
           <p class="term__text">{{ item.text }}</p>
         </div>
