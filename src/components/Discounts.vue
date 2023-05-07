@@ -81,4 +81,10 @@ const discountCards = [
     align-items: center;
   }
 }
+
+@media (max-width: 440px) {
+  .discounts__title {
+    text-align: center;
+  }
+}
 </style>
