@@ -1,56 +1,50 @@
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue'
+import PromoPopup from '@/components/UI/PromoPopup.vue'
+import copyIcon from '@/assets/img/UI/copy.svg?url'
 
-export default {
-  props: {
-    id: {
-      type: Number,
-    },
-    imageUrl: {
-      type: String,
-    },
-    title: {
-      type: String,
-    },
-    subtitle: {
-      type: String,
-    },
-    btnText: {
-      type: String,
-    },
-    text: {
-      type: String,
-    },
-    promo: {
-      type: String,
-    },
+const props = defineProps({
+  id: {
+    type: Number,
   },
-  data() {
-    return {
-      isPopupVisible: false, // флаг для видимости попапа
-    }
+  imageUrl: {
+    type: String,
   },
-  methods: {
-    onCopyClick() {
-      if (this.promo) {
-        navigator.clipboard.writeText(this.promo)
-          .then(() => {
-            this.isPopupVisible = true
-          })
-          .catch((error) => {
-            console.error('Failed to copy value to clipboard:', error);
-          });
-      } else {
-        console.error('Cannot copy undefined value');
-      }
-    },
+  title: {
+    type: String,
   },
-};
+  subtitle: {
+    type: String,
+  },
+  btnText: {
+    type: String,
+  },
+  text: {
+    type: String,
+  },
+  promo: {
+    type: String,
+  },
+})
+
+const isPopupVisible = ref(false) // флаг для видимости попапа
+
+function onCopyClick() {
+  if (!props.promo) return console.error('Cannot copy undefined value')
+  navigator.clipboard
+    .writeText(props.promo)
+    .then(() => {
+      isPopupVisible.value = true
+    })
+    .catch((error) => {
+      console.error('Failed to copy value to clipboard:', error)
+    })
+}
 </script>
 
 <template>
   <div v-if="!$route.params.idCard" class="card">
-    <img class="card__image" :src="imageUrl" alt="Discount Card Image">
+    <img class="card__image" :src="imageUrl" alt="Discount Card Image" />
     <div class="card__content">
       <h3 class="card__title">{{ title }}</h3>
       <h4 class="card__subtitle">{{ subtitle }}</h4>
@@ -63,12 +57,17 @@ export default {
       <p class="details__text">{{ text }}</p>
       <h4 class="details__promo">
         ПРОМОКОД: <span>{{ promo }}</span>
-        <img class='details__copy' src='src/assets/img/UI/copy.svg' :onClick="onCopyClick" />
+        <img
+          class="details__copy"
+          alt="copy"
+          :src="copyIcon"
+          @click="onCopyClick"
+        />
       </h4>
     </div>
-    <img class="details__image" :src="imageUrl" alt="Discount Card Image">
+    <img class="details__image" :src="imageUrl" alt="Discount Card Image" />
   </div>
-    <PromoPopup v-if="isPopupVisible" text="Промокод скопирован"/>
+  <PromoPopup v-if="isPopupVisible" text="Промокод скопирован" />
 </template>
 
 <style lang="scss" scoped>
@@ -82,7 +81,7 @@ export default {
   box-sizing: border-box;
   box-shadow: 15px 12px 13px 4px rgba(34, 60, 80, 0.22);
   border-radius: 10px;
-  transition: transform .2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   &:hover {
     transform: scale(1.05);
   }
@@ -182,7 +181,7 @@ export default {
     display: flex;
     width: 440px;
     height: 380px;
-    background: #D9D9D9;
+    background: #d9d9d9;
     margin-left: 30px;
   }
 }
@@ -202,8 +201,8 @@ export default {
     }
     &__image {
       margin-left: 0;
-      max-width: 100%; 
-      height: 100%; 
+      max-width: 100%;
+      height: 100%;
     }
   }
 }

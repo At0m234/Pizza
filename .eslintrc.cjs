@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    'quotes': ['error', 'single'],
+    'quotes': ['warn', 'single'],
     'comma-dangle': ['warn', 'always-multiline'],
   },
 }
