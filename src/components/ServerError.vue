@@ -6,29 +6,26 @@ import fiveImg from '@/assets/img/500/five.svg';
 
 <template>
   <section class="server-error">
-    <div class="server-error__content">
 
-      <span class="server-error__500">
-        <fiveImg/>
-        <pizzaImg class="pizza"/>
-        <pizzaImg />
-      </span>
-      <span class="server-error__text">Ошибка сервера. Вернуться на 
-        <router-link to="/"><span class="server-error__main-page">ГЛАВНУЮ</span></router-link>
-      </span>
+    <span class="server-error__500">
+      <fiveImg />
+      <pizzaImg class="pizza"/>
+      <pizzaImg />
+    </span>
+    <span class="server-error__text">Ошибка сервера. Вернуться на 
+      <router-link to="/" style="text-decoration: none;"><span class="server-error__main-page">ГЛАВНУЮ</span></router-link>
+    </span>
 
-    </div>
   </section>
 </template>
 
 <style scoped lang="scss">
 .server-error {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
   &__content {
     display: flex;
     flex-direction: column;
@@ -60,6 +57,10 @@ import fiveImg from '@/assets/img/500/five.svg';
 }
 
 @media (max-width: 640px) {
+  .server-error__500 {
+    flex-direction: column;
+    justify-content: space-between;
+  }
   .server-error__text {
     font-style: normal;
     font-weight: 400;
