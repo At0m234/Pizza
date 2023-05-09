@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import PromoPopup from '@/components/UI/PromoPopup.vue'
+import { defineProps } from 'vue';
 import copyIcon from '@/assets/img/UI/copy.svg?url'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 
 const props = defineProps({
   id: {
-    type: Number,
+    type: String,
   },
   imageUrl: {
     type: String,
@@ -27,23 +30,24 @@ const props = defineProps({
   },
 })
 
-const isPopupVisible = ref(false) // флаг для видимости попапа
-
 function onCopyClick() {
   if (!props.promo) return console.error('Cannot copy undefined value')
   navigator.clipboard
-    .writeText(props.promo)
-    .then(() => {
-      isPopupVisible.value = true
-    })
-    .catch((error) => {
-      console.error('Failed to copy value to clipboard:', error)
-    })
+  .writeText(props.promo)
+  .then(() => {
+  })
+  .catch((error) => {
+    console.error('Failed to copy value to clipboard:', error)
+  })
 }
+
+const redirectToDiscountCard = () => {
+  router.push({ name: 'DiscountCard', params: props });
+};
 </script>
 
 <template>
-  <div v-if="!$route.params.idCard" class="card">
+  <div v-if="!$route.params.id" class="card" @click="redirectToDiscountCard">
     <img class="card__image" :src="imageUrl" alt="Discount Card Image" />
     <div class="card__content">
       <h3 class="card__title">{{ title }}</h3>
@@ -67,7 +71,6 @@ function onCopyClick() {
     </div>
     <img class="details__image" :src="imageUrl" alt="Discount Card Image" />
   </div>
-  <PromoPopup v-if="isPopupVisible" text="Промокод скопирован" />
 </template>
 
 <style lang="scss" scoped>
@@ -104,6 +107,7 @@ function onCopyClick() {
     line-height: 21px;
     color: var(--color-text-black);
     margin: 0 0 5px 0;
+    text-decoration: none;
   }
   &__subtitle {
     font-style: normal;
@@ -201,8 +205,8 @@ function onCopyClick() {
     }
     &__image {
       margin-left: 0;
-      max-width: 100%;
-      height: 100%;
+      width: 70%;
+      height: calc(440/380)*50vh;
     }
   }
 }
