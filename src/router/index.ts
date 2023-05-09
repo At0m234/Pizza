@@ -35,13 +35,26 @@ const router = createRouter({
       path: '/discounts',
       name: 'discount',
       component: DiscountView,
+      children: [
+        {
+          path: ':id',
+          name: 'DiscountCard',
+          component: DiscountCard,
+          props: route => ({
+            id: route.params.id,
+            title: route.params.title,
+            text: route.params.text,
+            promo: route.params.promo,
+            imageUrl: route.params.imageUrl,
+          }),
+        },
+      ],
     },
-    {
-      path: '/discounts/:idCard',
-      name: 'DiscountCard',
-      component: DiscountCard,
-      props: true,
-    },
+    // {
+    //   path: '/discounts/:id',
+    //   name: 'DiscountCard',
+    //   component: DiscountCard,
+    // },
     {
       path: '/500',
       name: 'serverError',
