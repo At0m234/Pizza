@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {HEAD_CONST} from '@/constants'
 import router from '../router';
-import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
-import instagram from '@/assets/img/footer/instagram.svg?component'
-import vk from '@/assets/img/footer/vk.svg?component'
+// import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
+// import instagram from '@/assets/img/footer/instagram.svg?component'
+// import vk from '@/assets/img/footer/vk.svg?component'
 
 const menu = [
   {label: 'Пицца', value: 'pizza'},
@@ -87,7 +87,7 @@ function onInfoClick(value: any) {
           <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
             {{ HEAD_CONST.PHONE }}
           </a>
-          <div class="category__socials">
+          <!-- <div class="category__socials">
             <a class="category__socials-link" href="https://wa.me/74999999999" target="_blank">
               <whatsUp/>
             </a>
@@ -97,7 +97,7 @@ function onInfoClick(value: any) {
             <a class="category__socials-link" href="https://vk.com" target="_blank">
               <vk/>
             </a>
-          </div>
+          </div> -->
           
           <span class="phone__feedback" @click="onPhoneClick">Перезвоните мне</span>
         </div>
