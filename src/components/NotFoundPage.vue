@@ -9,12 +9,12 @@ import fourImg from '@/assets/img/404/four.svg';
     <div class="not-found__content">
 
       <span class="not-found__404">
-        <fourImg/>
+        <fourImg class="not-found__4"/>
         <pizzaImg class="pizza"/>
-        <fourImg/>
+        <fourImg class="not-found__4"/>
       </span>
       <span class="not-found__text">Страница не найдена. Вернуться на 
-        <router-link to="/"><span class="not-found__main-page">ГЛАВНУЮ</span></router-link>
+        <router-link to="/" style="text-decoration: none;"><span class="not-found__main-page">ГЛАВНУЮ</span></router-link>
       </span>
 
     </div>
@@ -38,9 +38,12 @@ import fourImg from '@/assets/img/404/four.svg';
   }
   &__404 {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    height: calc(110/234)*50vh;
   }
+
   &__text {
     font-style: normal;
     font-weight: 400;
@@ -66,6 +69,10 @@ import fourImg from '@/assets/img/404/four.svg';
     font-size: 15px;
     line-height: 18px;
     margin-top: 25px;
+  }
+  .not-found__404 {
+    flex-direction: column;
+    height: 100%;
   }
 }
 </style>
