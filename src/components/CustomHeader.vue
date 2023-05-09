@@ -9,6 +9,7 @@ import {HEAD_CONST} from '@/constants'
 import router from '../router';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+const isMenuOpen = ref(false);
 
 const menu = [
   {
@@ -37,10 +38,6 @@ function onPhoneClick() {
   console.log('###### onPhoneClick')
 }
 
-function onMenuClick(value: string) {
-  router.push('/' + value)
-}
-
 function onCartClick() {
   router.push('/shopping-cart')
 }
@@ -63,17 +60,21 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', onResize);
 });
 
-let isMenuOpen = false;
-
 function toggleMenu() {
-  isMenuOpen = !isMenuOpen;
+  isMenuOpen.value = !isMenuOpen.value;
 }
+
+function onMenuClick(val: string) {
+  router.push('/' + val)
+  isMenuOpen.value = false
+}
+
 </script>
 
 <template>
   <header class="header__wrapper">
     <div class="header">
-
+      
       <template v-if="screenWidth >= 910">
         <div class="info">
           <div class="info__delivery">
@@ -138,36 +139,30 @@ function toggleMenu() {
       </template> 
 
       <template v-if="screenWidth <= 660">
-        <div class="burger-menu">
-          <button class="burger-menu__button" @click="toggleMenu"></button>
-
-          <ul class="burger-menu__list" v-show="isMenuOpen">
-            <li v-for="item in menu" :key="item.value">
-              <a class="burger-menu__link" @click="onMenuClick(item.value)">
-                {{ item.label }}
+        <button class="burger-menu" @click="toggleMenu"></button>
+        <div class="burger-menu__list" v-bind:class="{ hidden: !isMenuOpen }">
+          <span v-for="item in menu" :key="item.value" class="burger-menu__link" @click="onMenuClick(item.value)">
+            <a>
+              {{ item.label }}
+            </a>
+          </span>
+          <div class="burger-menu__phone">
+            <a class="burger-menu__phone_number" :href="'tel:'+HEAD_CONST.PHONE">
+              {{ HEAD_CONST.PHONE }}
+            </a>
+            <!-- <div class="category__socials">
+              <a class="category__socials-link" href="https://wa.me/74999999999" target="_blank">
+                <whatsUp/>
               </a>
-            </li>
-            <div class="category category_type_contacts">
-              <div class="phone">
-                <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
-                  {{ HEAD_CONST.PHONE }}
-                </a>
-                <div class="category__socials">
-                  <a class="category__socials-link" href="https://wa.me/74999999999" target="_blank">
-                    <whatsUp/>
-                  </a>
-                  <a class="category__socials-link" href="https://instagram.com" target="_blank">
-                    <instagram/>
-                  </a>
-                  <a class="category__socials-link" href="https://vk.com" target="_blank">
-                    <vk/>
-                  </a>
-                </div>
-                
-              </div>
-            </div>
-          </ul>
-
+              <a class="category__socials-link" href="https://instagram.com" target="_blank">
+                <instagram/>
+              </a>
+              <a class="category__socials-link" href="https://vk.com" target="_blank">
+                <vk/>
+              </a>
+            </div> -->
+            
+          </div>
         </div>
         <Logo class="header__logo" @click="onLogoClick"/>
         <cart class="menu__item" @click="onCartClick"/>
@@ -178,6 +173,7 @@ function toggleMenu() {
 </template>
 
 <style lang="scss" scoped>
+
 .burger-menu {
   display: flex;
   justify-content: center;
@@ -187,37 +183,59 @@ function toggleMenu() {
   padding: 0;
   width: 45px;
   height: 45px;
-  &__button {
-    position: relative;
-    background-color: transparent;
-    border: none;
-  }
+  position: relative;
+  background-color: transparent;
+  border: none;
   &__list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
-    width: 250px;
-    height: 420px;
+    width: 100%;
+    height: 100vh;
     list-style: none;
     position: absolute;
     padding: 20px;
-    top: 40px;
-    left: 0;
-    background: #FFFFFF;
-    border-radius: 0px 15px 15px 0px;
+    top: 75px;
+    background: #FFF;
     z-index: 2;
   }
   &__link {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-width: 100%;
+    border-bottom: 1px solid #E7E7E7;
+    transition: transform .2s ease-in-out;
+    &:hover {
+      color: var(--color-warning);
+      transform: scale(1.15);
+    }
+  }
+  &__link a {
     font-style: normal;
     font-weight: 700;
     font-size: 13px;
     line-height: 15px;
     color: var(--color-text-gray);
-    margin-bottom: 20px;
-    border-bottom: 1px solid #E7E7E7;
+    margin: 20px 0;
   }
+  &__phone {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+  }
+  &__phone_number {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-text);
+    transition: color .2s ease-in-out;
+    &:hover {
+      color: var(--color-warning);
+    }
+  }
+}
+.hidden {
+  display: none;
 }
 .header {
   max-width: 1440px;
