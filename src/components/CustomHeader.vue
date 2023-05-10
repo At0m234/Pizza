@@ -2,14 +2,17 @@
 import Logo from '@/assets/img/logo_big.svg?component'
 import Clock from '@/assets/icon/clock.svg?component'
 import Cart from '@/assets/icon/cart.svg?component'
-import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
-import instagram from '@/assets/img/footer/instagram.svg?component'
-import vk from '@/assets/img/footer/vk.svg?component'
-import {HEAD_CONST} from '@/constants'
-import router from '../router';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+// import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
+// import instagram from '@/assets/img/footer/instagram.svg?component'
+// import vk from '@/assets/img/footer/vk.svg?component'
+import { HEAD_CONST } from '@/constants'
+import router from '../router'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-const isMenuOpen = ref(false);
+const screenWidth = ref(window.innerWidth)
+const isMenuOpen = ref(false)
+const selectedItem = ref('')
+const selectedLabel = ref('');
 
 const menu = [
   {
@@ -34,6 +37,49 @@ const menu = [
   },
 ]
 
+const menuConfig = [
+  {
+    label: 'Пицца',
+    value: 'pizza',
+  },
+  {
+    label: 'Вок',
+    value: 'wok',
+  },
+  {
+    label: 'Супы',
+    value: 'soup',
+  },
+  {
+    label: 'Закуски',
+    value: 'snack',
+  },
+  {
+    label: 'Салаты',
+    value: 'salad',
+  },
+  {
+    label: 'Сэндвичи',
+    value: 'sandwich',
+  },
+  {
+    label: 'Соусы',
+    value: 'souse',
+  },
+  {
+    label: 'Десерты',
+    value: 'dessert',
+  },
+  {
+    label: 'Напитки',
+    value: 'drinks',
+  },
+  {
+    label: 'Магазин',
+    value: 'shop',
+  },
+]
+
 function onPhoneClick() {
   console.log('###### onPhoneClick')
 }
@@ -46,26 +92,32 @@ function onLogoClick() {
   router.push('/')
 }
 
-const screenWidth = ref(window.innerWidth);
-
 const onResize = () => {
-  screenWidth.value = window.innerWidth;
-};
-
-onMounted(() => {
-  window.addEventListener('resize', onResize);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', onResize);
-});
-
-function toggleMenu() {
-  isMenuOpen.value = !isMenuOpen.value;
+  screenWidth.value = window.innerWidth
 }
 
-function onMenuClick(val: string) {
-  router.push('/' + val)
+onMounted(() => {
+  window.addEventListener('resize', onResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', onResize)
+})
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+function onMenuClick(value: string) {
+  selectedLabel.value = value;
+  console.log(value)
+  router.push('/' + value)
+  isMenuOpen.value = false
+}
+
+function onMenuSelect (value: string) {
+  console.log(value)
+  router.push('/' + value)
   isMenuOpen.value = false
 }
 
@@ -74,11 +126,10 @@ function onMenuClick(val: string) {
 <template>
   <header class="header__wrapper">
     <div class="header">
-      
       <template v-if="screenWidth >= 910">
         <div class="info">
           <div class="info__delivery">
-            <clock/>
+            <clock />
             {{ HEAD_CONST.DELIVERY_TIME }}
           </div>
           <div class="info__time">
@@ -86,68 +137,105 @@ function onMenuClick(val: string) {
           </div>
         </div>
         <div class="phone">
-          <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
+          <a class="phone__number" :href="'tel:' + HEAD_CONST.PHONE">
             {{ HEAD_CONST.PHONE }}
           </a>
-          <span class="phone__feedback" @click="onPhoneClick">Перезвоните мне</span>
+          <span class="phone__feedback" @click="onPhoneClick"
+            >Перезвоните мне</span
+          >
         </div>
-        <Logo class="header__logo" @click="onLogoClick"/>
+        <Logo class="header__logo" @click="onLogoClick" />
         <div class="menu">
           <span
-              v-for="item in menu"
-              class="menu__item"
-              :key="item.value"
-              @click="onMenuClick(item.value)"
-          >{{ item.label }}</span>
+            v-for="item in menu"
+            class="menu__item"
+            :class="{ selected: selectedLabel === item.value }"
+            :key="item.value"
+            @click="onMenuClick(item.value)"
+            >{{ item.label }}</span
+          >
 
-          <cart class="menu__item" @click="onCartClick"/>
+          <cart class="menu__item" @click="onCartClick" />
         </div>
       </template>
 
-      <template v-if="screenWidth < 910 && screenWidth > 780" >
+      <template v-if="screenWidth < 910 && screenWidth > 780">
         <div class="phone">
-            <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
-              {{ HEAD_CONST.PHONE }}
-            </a>
-            <span class="phone__feedback" @click="onPhoneClick">Перезвоните мне</span>
-          </div>
-          <Logo class="header__logo" @click="onLogoClick"/>
-          <div class="menu">
-            <span
-                v-for="item in menu"
-                class="menu__item"
-                :key="item.value"
-                @click="onMenuClick(item.value)"
-            >{{ item.label }}</span>
+          <a class="phone__number" :href="'tel:' + HEAD_CONST.PHONE">
+            {{ HEAD_CONST.PHONE }}
+          </a>
+          <span class="phone__feedback" @click="onPhoneClick"
+            >Перезвоните мне</span
+          >
+        </div>
+        <Logo class="header__logo" @click="onLogoClick" />
+        <div class="menu">
+          <span
+            v-for="item in menu"
+            class="menu__item"
+            :class="{ selected: selectedLabel === item.value }"
+            :key="item.value"
+            @click="onMenuClick(item.value)"
+            >{{ item.label }}</span
+          >
+          <cart class="menu__item" @click="onCartClick" />
+        </div>
+      </template>
 
-            <cart class="menu__item" @click="onCartClick"/>
-          </div>
-      </template> 
+      <template v-if="screenWidth < 780 && screenWidth > 660">
+        <Logo class="header__logo" @click="onLogoClick" />
+        <div class="menu">
+          <span
+            v-for="item in menu"
+            class="menu__item"
+            :class="{ selected: selectedLabel === item.value }"
+            :key="item.value"
+            @click="onMenuClick(item.value)"
+            >{{ item.label }}</span
+          >
 
-      <template v-if="screenWidth < 780 && screenWidth > 660" >
-          <Logo class="header__logo" @click="onLogoClick"/>
-          <div class="menu">
-            <span
-                v-for="item in menu"
-                class="menu__item"
-                :key="item.value"
-                @click="onMenuClick(item.value)"
-            >{{ item.label }}</span>
-
-            <cart class="menu__item" @click="onCartClick"/>
-          </div>
-      </template> 
+          <cart class="menu__item" @click="onCartClick" />
+        </div>
+      </template>
 
       <template v-if="screenWidth <= 660">
         <button class="burger-menu" @click="toggleMenu"></button>
         <div class="burger-menu__list" v-bind:class="{ hidden: !isMenuOpen }">
-          <span v-for="item in menu" :key="item.value" class="burger-menu__link" @click="onMenuClick(item.value)">
-            <a>
+          <span
+            v-for="item in menu"
+            :key="item.value"
+            class="burger-menu__link"
+          >
+
+            <a @click="onMenuClick(item.value)">
               {{ item.label }}
             </a>
+
+            <select
+              class="burger-menu__select"
+              v-if="item.value === 'menu'"
+              v-model="selectedItem"
+              @change="onMenuSelect(selectedItem)"
+            >
+              <option
+                class="burger-menu__option"
+                v-for="item in menuConfig"
+                :key="item.value"
+                :value="item.value"
+              >
+                <a>
+                  {{ item.label }}
+                </a>
+              </option>
+            </select>
+
           </span>
+
           <div class="burger-menu__phone">
-            <a class="burger-menu__phone_number" :href="'tel:'+HEAD_CONST.PHONE">
+            <a
+              class="burger-menu__phone_number"
+              :href="'tel:' + HEAD_CONST.PHONE"
+            >
               {{ HEAD_CONST.PHONE }}
             </a>
             <!-- <div class="category__socials">
@@ -161,23 +249,21 @@ function onMenuClick(val: string) {
                 <vk/>
               </a>
             </div> -->
-            
           </div>
         </div>
-        <Logo class="header__logo" @click="onLogoClick"/>
-        <cart class="menu__item" @click="onCartClick"/>
+        <Logo class="header__logo" @click="onLogoClick" />
+        <cart class="menu__item" @click="onCartClick" />
       </template>
-
     </div>
   </header>
 </template>
 
 <style lang="scss" scoped>
-
 .burger-menu {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   background-image: url('../assets/icon/burger-menu.svg');
   background-repeat: no-repeat;
   padding: 0;
@@ -196,18 +282,18 @@ function onMenuClick(val: string) {
     position: absolute;
     padding: 20px;
     top: 75px;
-    background: #FFF;
+    background: #fff;
     z-index: 2;
   }
   &__link {
     display: flex;
-    justify-content: center;
     min-width: 100%;
-    border-bottom: 1px solid #E7E7E7;
-    transition: transform .2s ease-in-out;
+    border-bottom: 1px solid #e7e7e7;
+    transition: transform 0.2s ease-in-out;
+    padding: 0 20px;
     &:hover {
       color: var(--color-warning);
-      transform: scale(1.15);
+      // transform: scale(1.15);
     }
   }
   &__link a {
@@ -218,7 +304,7 @@ function onMenuClick(val: string) {
     color: var(--color-text-gray);
     margin: 20px 0;
   }
-  &__phone {  
+  &__phone {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -228,15 +314,51 @@ function onMenuClick(val: string) {
     font-size: 20px;
     font-weight: bold;
     color: var(--color-text);
-    transition: color .2s ease-in-out;
+    transition: color 0.2s ease-in-out;
     &:hover {
       color: var(--color-warning);
     }
   }
+  &__select {
+    display: flex;
+    margin-left: auto;
+    border: none;
+    z-index: 3;
+    border-radius: 15px;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+  &__option {
+    display: flex;
+    background: #ffffff;
+    width: 50%;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    color: var(--color-text-gray);
+    cursor: pointer;
+
+    &:hover {
+      background-color: transparent;
+      color: var(--color-warning);
+    }
+
+    &:focus {
+      background-color: transparent;
+      color: var(--color-warning);
+    }
+
+    &:checked {
+      background-color: transparent;
+      color: var(--color-warning);
+    }
+  }
 }
-.hidden {
-  display: none;
-}
+
 .header {
   max-width: 1440px;
   display: flex;
@@ -255,7 +377,7 @@ function onMenuClick(val: string) {
     display: flex;
     max-width: 170px;
     cursor: pointer;
-    transition: transform .2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
     &:hover {
       color: var(--color-warning);
       transform: scale(1.15);
@@ -263,7 +385,6 @@ function onMenuClick(val: string) {
   }
 }
 .info {
-
   &__delivery {
     display: flex;
     align-items: center;
@@ -283,7 +404,7 @@ function onMenuClick(val: string) {
   display: flex;
   cursor: pointer;
   font-weight: 600;
-  transition: transform .2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   color: var(--color-icon-gray);
 
   &:hover {
@@ -291,8 +412,17 @@ function onMenuClick(val: string) {
     transform: scale(1.15);
 
     svg {
-        fill: var(--color-warning);
-      }
+      fill: var(--color-warning);
+    }
+  }
+  
+  &:active {
+    color: var(--color-warning);
+    transform: scale(1.15);
+
+    svg {
+      fill: var(--color-warning);
+    }
   }
 }
 .phone {
@@ -304,7 +434,7 @@ function onMenuClick(val: string) {
     font-size: 20px;
     font-weight: bold;
     color: var(--color-text);
-    transition: color .2s ease-in-out;
+    transition: color 0.2s ease-in-out;
     &:hover {
       color: var(--color-warning);
     }
@@ -325,17 +455,26 @@ function onMenuClick(val: string) {
     justify-content: space-between;
     margin-top: 20px;
   }
-    &__socials-link {
+  &__socials-link {
     transition: opacity 0.15s ease-in-out;
     cursor: pointer;
     &:hover {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 }
 
+.hidden {
+  display: none;
+}
+
+.selected {
+  color: var(--color-warning);
+  transform: scale(1.15);
+}
+
 @media (max-width: 780px) {
-    .header {
+  .header {
     justify-content: space-evenly;
   }
 }

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import {HEAD_CONST} from '@/constants'
 import router from '../router';
+import { ref } from 'vue';
 // import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
 // import instagram from '@/assets/img/footer/instagram.svg?component'
 // import vk from '@/assets/img/footer/vk.svg?component'
+const selectedLabel = ref('');
 
 const menu = [
   {label: 'Пицца', value: 'pizza'},
@@ -30,15 +32,18 @@ const personal = [
   {label: 'Отзывы', value: 'reviews'},
 ]
 
-function onMenuClick(v: any){
-  console.log('###### onMenuClick', v)
+function onMenuClick(value: any) {
+  selectedLabel.value = value
+  router.push('/' + value);
+  console.log('###### onMenuClick', value)
 }
 
-function onPhoneClick(){
+function onPhoneClick() {
   console.log('###### onPhoneClick' )
 }
 
 function onInfoClick(value: any) {
+  selectedLabel.value = value
   router.push('/' + value);
 }
 
@@ -53,8 +58,12 @@ function onInfoClick(value: any) {
           <li
             v-for="item of menu"
             class="category__item"
+            :class="{ selected: selectedLabel === item.value }"
             :key="item"
-            @click="onMenuClick(item.value)">{{item.label}}</li>
+            @click="onMenuClick(item.value)"
+            >
+            {{item.label}}
+          </li>
         </ul>
       </div>
       <div class="category category_type_info">
@@ -64,7 +73,9 @@ function onInfoClick(value: any) {
             v-for="item of info"
             class="category__item"
             :key="item"
-            @click="onInfoClick(item.value)">
+            @click="onInfoClick(item.value)"
+            :class="{ selected: selectedLabel === item.value }"
+          >
             {{item.label}}
           </li>
         </ul>
@@ -73,12 +84,14 @@ function onInfoClick(value: any) {
         <h3 class="category__title">Личный кабинет</h3>
         <ul class="category__wrapper">
           <li
-              v-for="item of personal"
-              class="category__item"
-              :key="item"
-              @click="onInfoClick(item.value)">
-              {{item.label}}
-            </li>
+            v-for="item of personal"
+            class="category__item"
+            :key="item"
+            @click="onInfoClick(item.value)"
+            :class="{ selected: selectedLabel === item.value }"
+          >
+            {{item.label}}
+          </li>
         </ul>
       </div>
       <div class="category category_type_contacts">
@@ -178,6 +191,11 @@ function onInfoClick(value: any) {
     text-decoration: underline;
     margin-top: 20px;
   }
+}
+
+.selected {
+  color: var(--color-warning);
+  transform: scale(1.15);
 }
 
 @media (max-width: 1000px) {
