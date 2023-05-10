@@ -63,6 +63,9 @@
   --bg-color-white: #F5F5F5;
   --bg-popup-promo: #66A486;
   --border-discount-card: #F2EEEE;
+  --border-order: #ACACAC;
+  --bg-input-order: #F4F4F4;
+  --order-placeholder: #AFAFAF;
 }
 *,
 *::before,
