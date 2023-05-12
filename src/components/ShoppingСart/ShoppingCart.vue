@@ -1,6 +1,8 @@
 <script setup lang="ts">
 
 import OrderCard from '../UI/OrderCard.vue';
+import Slaider from '../UI/Slaider.vue'
+import ProductCard from '../UI/ProductCard.vue';
 
 </script>
 
@@ -126,11 +128,24 @@ import OrderCard from '../UI/OrderCard.vue';
       
     </div>
 
-    <div class="shopping-cart__add-to-order">
-      <div class="shopping-cart__slaider">
-        
-      </div>
-    </div>
+    <Slaider title="Добавьте к заказу">
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+    </Slaider>
 
   </section>
 </template>
@@ -140,6 +155,7 @@ import OrderCard from '../UI/OrderCard.vue';
   &__order {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 100px;
   }
   &__add-to-order {
     width: 100%;
