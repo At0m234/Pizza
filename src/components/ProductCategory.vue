@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps, reactive, ref, watch } from 'vue'
-import ProductCard from '@/components/ProductCard.vue'
+import ProductCard from '@/components/UI/ProductCard.vue'
 import axios from 'axios'
 
 defineProps({

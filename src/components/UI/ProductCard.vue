@@ -46,7 +46,7 @@ const state = reactive({
 })
 
 const totalPrice = computed(() => {
-   const totalPrice =  state.activeSize === 'small' ? state.price : state.priceBig
+  const totalPrice =  state.activeSize === 'small' ? state.price : state.priceBig
   return (totalPrice + state.toppingsSum) * state.count
 })
 
