@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import removeOrder from '@/assets/icon/orderCard/cross.svg?component'
 
 const props = defineProps({
   id: {
@@ -29,7 +30,7 @@ const props = defineProps({
     </div>
 
     <span class="food__price">{{ props.price }} &#8381;</span>
-
+    <removeOrder class="card__remove"></removeOrder>
   </div>
 </template>
 
@@ -38,6 +39,7 @@ const props = defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   box-shadow: 8px 11px 10px 2px rgba(34, 60, 80, 0.25);
   border-radius: 10px;
   padding: 10px;
@@ -50,6 +52,13 @@ const props = defineProps({
   &__description {
     display: flex;
     align-items: center;
+  }
+  &__remove {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: 0px;
+    right: 10px;
   }
 }
 
