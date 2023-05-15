@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue';
-import copyIcon from '@/assets/img/UI/copy.svg?url'
+import copyIcon from '@/assets/icon/discountCard/copy.svg?url'
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
