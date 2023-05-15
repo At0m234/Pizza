@@ -3,7 +3,80 @@
 import OrderCard from '../UI/OrderCard.vue';
 import Slaider from '../UI/Slaider.vue'
 import ProductCard from '../UI/ProductCard.vue';
+// import InputPromo from '../UI/InputPromo.vue';
 
+const order = [
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+  {
+    title: 'Пицца “Четыре сыра” 30 см',
+    count: '1 шт.',
+    price: '449',
+  },
+]
 </script>
 
 <template>
@@ -11,92 +84,18 @@ import ProductCard from '../UI/ProductCard.vue';
     <div class="shopping-cart__order">
 
       <div class="order">
-
         <span class="order__info">
           <span class="order__date">10.05.23</span>
           <span class="order__number">№ 1234</span>
         </span>
 
         <div class="order__container">
-          <OrderCard 
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
           <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
-          />
-          <OrderCard
-            title="Пицца “Четыре сыра” 30 см"
-            count="1 шт."
-            price="449"
+            v-for="(item, index) in order"
+            :key="index"
+            :title="item.title"
+            :count="item.count"
+            :price="item.price"
           />
         </div>
 
@@ -117,10 +116,10 @@ import ProductCard from '../UI/ProductCard.vue';
             <span>Всего:</span>
             <span>1000 &#8381;</span>
           </div>
-          <div class="sum__discounts">
-            <input class="sum__promo" type="text" placeholder="ПРОМОКОД"/>
-            <button class="sum__apply">Применить</button>
-          </div>
+          <!-- <InputPromo
+            placeholder="ПРОМОКОД"
+            btnText="Применить"
+          /> -->
         </div>
 
         <button class="place-order_submit">Оформить заказ</button>
@@ -139,12 +138,7 @@ import ProductCard from '../UI/ProductCard.vue';
       <ProductCard/>
       <ProductCard/>
       <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
+      <ProductCard/> 
     </Slaider>
 
   </section>
@@ -152,6 +146,10 @@ import ProductCard from '../UI/ProductCard.vue';
 
 <style lang="scss" scoped>
 .shopping-cart{
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  box-sizing: border-box;
   &__order {
     display: flex;
     justify-content: space-between;
@@ -180,12 +178,10 @@ import ProductCard from '../UI/ProductCard.vue';
 .order {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   border: 1px solid var(--border-order);
   border-radius: 10px;
   padding: 40px;
-  width: 70%;
-  max-width: 918px;
+  width: 750px;
   &__info {
     display: flex;
     align-items: center;
@@ -253,8 +249,7 @@ import ProductCard from '../UI/ProductCard.vue';
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 405px;
-  width: 30%;
+  width: 405px;
   &_submit {
     cursor: pointer;
     border: none;
@@ -280,7 +275,6 @@ import ProductCard from '../UI/ProductCard.vue';
 }
 .sum {
   width: 100%;
-  height: 15vh;
   border: 1px solid var(--border-order);
   border-radius: 10px;
   padding: 40px;
@@ -296,41 +290,34 @@ import ProductCard from '../UI/ProductCard.vue';
     line-height: 27px;
     color: var(--color-text-black);
   }
-  &__discounts {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+}
+
+@media (max-width: 1245px) {
+  .shopping-cart__order {
+    flex-direction: column;
+    align-items: center;
   }
-  &__promo {
-    border: none;
-    background: var(--bg-input-order);
-    border-radius: 5px;
-    padding: 7px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color: var(--color-text-black);
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 16px;
-      color: var(--order-placeholder);
-    }
-  }
-  &__apply {
-    border: none;
-    background-color: transparent;
-    color: var(--color-warning);
-    cursor: pointer;
+
+  .place-order {
+    margin-top: 50px;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 820px) {
+  .shopping-cart__order {
+    width: 100%;
+  }
+  .order {
+    width: 100%;
+  }
+}
 
+@media (max-width: 480px) {
+  .place-order {
+    width: 100%;
+  }
+  .sum{
+    width: 100%;
+  }
 }
 </style>
