@@ -2,9 +2,9 @@
 import {HEAD_CONST} from '@/constants'
 import router from '../router';
 import { ref } from 'vue';
-// import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
-// import instagram from '@/assets/img/footer/instagram.svg?component'
-// import vk from '@/assets/img/footer/vk.svg?component'
+// import whatsUp from '@/assets/icon/footer/whatsUp.svg?component'
+// import instagram from '@/assets/icon/footer/instagram.svg?component'
+// import vk from '@/assets/icon/footer/vk.svg?component'
 const selectedLabel = ref('');
 
 const menu = [

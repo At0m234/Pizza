@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps, ref } from 'vue';
-import previousArrow from '@/assets/img/UI/previousArrow.svg?component'
-import forwardArrow from '@/assets/img/UI/forwardArrow.svg?component'
+import previousArrow from '@/assets/icon/slider/previousArrow.svg?component'
+import forwardArrow from '@/assets/icon/slider/forwardArrow.svg?component'
 
 const props = defineProps({
   title: {
@@ -34,7 +34,7 @@ function moveSlider(direction: 'left' | 'right'): void {
 </script>
 
 <template>
-  <section class="slaider">
+  <div class="slaider">
 
     <div class="slaider__header">
       <h2 class="slaider__title">{{ title }}</h2>
@@ -44,20 +44,20 @@ function moveSlider(direction: 'left' | 'right'): void {
       </div>
     </div>
 
-    <div class="slaider__body">
+    <!-- <div class="slaider__body"> -->
       <div class="slaider__content" ref="sliderContent">
         <slot />
       </div>
-    </div>
+    <!-- </div> -->
     
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .slaider {
   display: flex;
   flex-direction: column;
-  max-width: 1440px;
+  max-width: 1360px;
 
   &__header {
     display: flex;
@@ -113,18 +113,13 @@ function moveSlider(direction: 'left' | 'right'): void {
     }
   }
 
-  &__body {
-    display: flex;
-    overflow-x: auto;
-    justify-content: center;
-  }
+  // &__body {
+  //   display: flex;
+  // }
 
   &__content {
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    width: 100%;
-    overflow-x: auto;
+    overflow-x: scroll;
 
     &::-webkit-scrollbar {
       height: 8px;

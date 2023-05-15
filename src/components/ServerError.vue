@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import pizzaImg from '@/assets/img/404/pizza.svg';
-import fiveImg from '@/assets/img/500/five.svg';
+import pizzaImg from '@/assets/icon/404/pizza.svg';
+import fiveImg from '@/assets/icon/500/five.svg';
 
 </script>
 

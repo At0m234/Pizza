@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import shipping from '@/assets/img/delivery/shipping.svg?component'
-import clock from '@/assets/img/delivery/clock.svg?component'
-import card from '@/assets/img/delivery/card.svg?component'
-import pizza from '@/assets/img/delivery/pizza.svg?component'
+import shipping from '@/assets/icon/delivery/shipping.svg?component'
+import clock from '@/assets/icon/delivery/clock.svg?component'
+import card from '@/assets/icon/delivery/card.svg?component'
+import pizza from '@/assets/icon/delivery/pizza.svg?component'
 
 const delivery = [
   {
