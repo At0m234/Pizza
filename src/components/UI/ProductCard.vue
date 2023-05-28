@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineProps, reactive, ref, watch } from 'vue'
+import { computed, defineProps, reactive } from 'vue'
 import pizzaImg from '@/assets/img/4.jpg'
 import { Plus } from '@element-plus/icons-vue'
 import ToppingPopover from '@/components/ToppingPopover.vue'
@@ -7,6 +7,7 @@ import ToppingPopover from '@/components/ToppingPopover.vue'
 const props = defineProps({
   data: Object,
 })
+
 const state = reactive({
   title: 'Пицца Цезарь',
   description:
@@ -46,7 +47,7 @@ const state = reactive({
 })
 
 const totalPrice = computed(() => {
-  const totalPrice =  state.activeSize === 'small' ? state.price : state.priceBig
+  const totalPrice = state.activeSize === 'small' ? state.price : state.priceBig
   return (totalPrice + state.toppingsSum) * state.count
 })
 
@@ -127,9 +128,6 @@ function updateToppings(val: number) {
 
 .description {
   font-size: 14px;
-}
-
-.image {
 }
 
 .button {

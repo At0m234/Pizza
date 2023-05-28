@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps } from 'vue'
 import copyIcon from '@/assets/icon/discountCard/copy.svg?url'
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
+import { useRoute } from 'vue-router'
+const route = useRoute()
 const props = defineProps({
   id: {
     type: String,
@@ -32,21 +30,16 @@ const props = defineProps({
 function onCopyClick() {
   if (!props.promo) return console.error('Cannot copy undefined value')
   navigator.clipboard
-  .writeText(props.promo)
-  .then(() => {
-  })
-  .catch((error) => {
-    console.error('Failed to copy value to clipboard:', error)
-  })
+    .writeText(props.promo)
+    .then(() => {})
+    .catch((error) => {
+      console.error('Failed to copy value to clipboard:', error)
+    })
 }
-
-const redirectToDiscountCard = () => {
-  router.push({ name: 'DiscountCard', params: props });
-};
 </script>
 
 <template>
-  <div v-if="!$route.params.id" class="card" @click="redirectToDiscountCard">
+  <div v-if="!route.params.id" class="card">
     <img class="card__image" :src="imageUrl" alt="Discount Card Image" />
     <div class="card__content">
       <h3 class="card__title">{{ title }}</h3>
@@ -54,6 +47,7 @@ const redirectToDiscountCard = () => {
       <button class="card__btn">{{ btnText }}</button>
     </div>
   </div>
+
   <div v-else class="card__details">
     <div class="details__info">
       <h3 class="details__title">{{ title }}</h3>
@@ -205,7 +199,7 @@ const redirectToDiscountCard = () => {
     &__image {
       margin-left: 0;
       width: 70%;
-      height: calc(440/380)*50vh;
+      height: calc(440 / 380) * 50vh;
     }
   }
 }

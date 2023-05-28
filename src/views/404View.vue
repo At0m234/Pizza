@@ -3,5 +3,5 @@ import NotFoundPage from '../components/NotFoundPage.vue'
 </script>
 
 <template>
-  <NotFoundPage/>
+  <NotFoundPage />
 </template>

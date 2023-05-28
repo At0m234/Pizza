@@ -3,5 +3,5 @@ import ServerError from '../components/ServerError.vue'
 </script>
 
 <template>
-  <ServerError/>
+  <ServerError />
 </template>

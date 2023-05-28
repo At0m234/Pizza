@@ -1,16 +1,16 @@
 <template>
   <div class="layout">
-    <custom-header/>
+    <custom-header />
     <main class="content">
-      <slot/>
+      <slot />
     </main>
-    <custom-footer class="layout__footer"/>
+    <custom-footer class="layout__footer" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import CustomHeader from '@/components/CustomHeader.vue';
-import CustomFooter from '@/components/CustomFooter.vue';
+import CustomHeader from '@/components/CustomHeader.vue'
+import CustomFooter from '@/components/CustomFooter.vue'
 </script>
 
 <style scoped>
@@ -24,7 +24,7 @@ import CustomFooter from '@/components/CustomFooter.vue';
   max-width: 1440px;
   height: 100%;
   min-height: 60vh;
-  padding: 20px 40px;
+  padding: 20px 10px;
   margin: 0 auto;
 }
 
@@ -33,5 +33,4 @@ main {
   width: 100%;
   height: 100%;
 }
-
 </style>

@@ -8,23 +8,22 @@ interface Props {
 const props = defineProps<Props>()
 const popupText = ref(props.text)
 const isPopupVisible = ref(true)
-
 </script>
 <template>
-  <div class="popup__promo" v-if="isPopupVisible">
+  <div class="popup__success" v-if="isPopupVisible">
     <p class="popup__text">{{ popupText }}</p>
   </div>
 </template>
 
 <style scoped>
-.popup__promo {
+.popup__success {
   position: absolute;
   bottom: 0;
   left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   box-shadow: 0px 8px 24px;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref } from 'vue';
+import { defineProps, ref } from 'vue'
 
 const props = defineProps({
   placeholder: {
@@ -10,17 +10,24 @@ const props = defineProps({
   },
 })
 
-const inputValue = ref('');
+const inputValue = ref('')
 
 function logInputValue() {
-  console.log(inputValue.value);
+  console.log(inputValue.value)
 }
 </script>
 
 <template>
   <div class="promocode">
-    <input class="promocode__input" type="text" v-model="inputValue" :placeholder="placeholder"/>
-    <button class="promocode__apply" @click="logInputValue">{{btnText}}</button>
+    <input
+      class="promocode__input"
+      type="text"
+      v-model="inputValue"
+      :placeholder="placeholder"
+    />
+    <button class="promocode__apply" @click="logInputValue">
+      {{ btnText }}
+    </button>
   </div>
 </template>
 
@@ -52,7 +59,6 @@ function logInputValue() {
       line-height: 16px;
       color: var(--order-placeholder);
     }
-
   }
 
   &__apply {

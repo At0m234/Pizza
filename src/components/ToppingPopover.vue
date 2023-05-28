@@ -88,13 +88,18 @@ function removeTopping(index: number) {
     {{ sum }} ₽
 
     <el-popover
-        placement="right"
-        trigger="click"
-        width="220px"
-        :show-arrow="false"
+      placement="right"
+      trigger="click"
+      width="220px"
+      :show-arrow="false"
     >
       <template #reference>
-        <el-button :icon="Plus" circle size="small" @click="state.visible = true"/>
+        <el-button
+          :icon="Plus"
+          circle
+          size="small"
+          @click="state.visible = true"
+        />
       </template>
       <div class="topping-popover">
         <div
@@ -127,7 +132,7 @@ function removeTopping(index: number) {
           </div>
         </div>
         <div class="submit">
-<!--          <el-button class="submit__btn" >Применить закрыть</el-button>-->
+          <!--          <el-button class="submit__btn" >Применить закрыть</el-button>-->
         </div>
       </div>
     </el-popover>
@@ -135,7 +140,6 @@ function removeTopping(index: number) {
 </template>
 
 <style lang="scss" scoped>
-
 .topping {
   font-size: 14px;
   font-weight: 600;
@@ -171,9 +175,6 @@ function removeTopping(index: number) {
   width: 100%;
   display: flex;
   justify-content: center;
-  &__btn {
-
-  }
 }
 
 .price {

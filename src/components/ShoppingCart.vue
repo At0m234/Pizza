@@ -1,9 +1,10 @@
 <script setup lang="ts">
-
-import OrderCard from '../UI/OrderCard.vue';
-import Slaider from '../UI/Slaider.vue'
-import ProductCard from '../UI/ProductCard.vue';
-// import InputPromo from '../UI/InputPromo.vue';
+import OrderCard from '@/components/UI/OrderCard.vue'
+import CustomSlaider from '@/components/UI/CustomSlaider.vue'
+import ProductCard from '@/components/UI/ProductCard.vue'
+// import InputPromo from '@/components/UI/InputPromo.vue';
+import router from '../router'
+import SubmitButton from '@/components/UI/SubmitButton.vue'
 
 const order = [
   {
@@ -77,12 +78,16 @@ const order = [
     price: '449',
   },
 ]
+
+function onOrderClick() {
+  console.log('click')
+  router.push('/order-registration')
+}
 </script>
 
 <template>
   <section class="shopping-cart">
     <div class="shopping-cart__order">
-
       <div class="order">
         <span class="order__info">
           <span class="order__date">10.05.23</span>
@@ -110,7 +115,6 @@ const order = [
       </div>
 
       <div class="place-order">
-
         <div class="sum">
           <div class="sum__total">
             <span>Всего:</span>
@@ -121,31 +125,36 @@ const order = [
             btnText="Применить"
           /> -->
         </div>
-
-        <button class="place-order_submit">Оформить заказ</button>
+        <!-- <router-link :to="{ path: '/order-registration'}"> -->
+        <SubmitButton
+          @click="onOrderClick()"
+          text="Оформить заказ"
+          :custom-styles="{ marginTop: '35px' }"
+        />
+        <!-- </router-link> -->
       </div>
-      
     </div>
+    <router-view></router-view>
 
-    <Slaider title="Добавьте к заказу">
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/> 
-    </Slaider>
-
+    <CustomSlaider title="Добавьте к заказу">
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+    </CustomSlaider>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.shopping-cart{
+.shopping-cart {
   display: flex;
   flex-direction: column;
   max-width: 1440px;
@@ -190,7 +199,7 @@ const order = [
     font-size: 14px;
     line-height: 16px;
     color: var(--color-text-black);
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
   &__date {
     margin-right: 10px;
@@ -201,8 +210,8 @@ const order = [
     overflow-y: scroll;
     height: 40vh;
     padding: 16px 10px;
-    border-top: 1px solid #EAEAEA;
-    border-bottom: 1px solid #EAEAEA;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
     gap: 10px;
 
     &::-webkit-scrollbar {
@@ -242,36 +251,13 @@ const order = [
     line-height: 18px;
     color: var(--color-text-black);
   }
-
 }
 
 .place-order {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 405px;
-  &_submit {
-    cursor: pointer;
-    border: none;
-    max-width: 150px;
-    margin-top: 35px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    background: #FF6161;
-    border-radius: 10px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color: var(--color-text-white);
-    transition: transform .2s ease-in-out ;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
+  width: 25%;
 }
 .sum {
   width: 100%;
@@ -292,13 +278,15 @@ const order = [
   }
 }
 
-@media (max-width: 1245px) {
+@media (max-width: 1200px) {
   .shopping-cart__order {
     flex-direction: column;
     align-items: center;
   }
 
   .place-order {
+    max-width: 750px;
+    width: 100%;
     margin-top: 50px;
   }
 }
@@ -316,7 +304,7 @@ const order = [
   .place-order {
     width: 100%;
   }
-  .sum{
+  .sum {
     width: 100%;
   }
 }
