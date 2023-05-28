@@ -1,9 +1,8 @@
 <script setup lang="ts">
-
-import shipping from '@/assets/icon/delivery/shipping.svg?component'
-import clock from '@/assets/icon/delivery/clock.svg?component'
-import card from '@/assets/icon/delivery/card.svg?component'
-import pizza from '@/assets/icon/delivery/pizza.svg?component'
+import shipping from '@/assets/icon/delivery/shipping.svg'
+import clock from '@/assets/icon/delivery/clock.svg'
+import card from '@/assets/icon/delivery/card.svg'
+import pizza from '@/assets/icon/delivery/pizza.svg'
 
 const delivery = [
   {
@@ -30,24 +29,17 @@ const delivery = [
     title: 'График работы',
     text: 'Мы принимаем и доставляем заказы с 08:00 до 05:00',
   },
-] 
-
+]
 </script>
 
 <template>
   <section class="delivery">
-
     <div class="delivery__content">
-
       <h1 class="delivery__title">ДОСТАВКА</h1>
 
       <div class="delivery__terms">
-        <div
-          v-for="item of delivery"
-          class="delivery__term"
-          :key="item.id"
-        >
-          <component :is="item.icon" class="term__image"/>
+        <div v-for="item of delivery" class="delivery__term" :key="item.id">
+          <component :is="item.icon" class="term__image" />
           <h2 class="term__title">{{ item.title }}</h2>
           <p class="term__text">{{ item.text }}</p>
         </div>
@@ -55,11 +47,13 @@ const delivery = [
 
       <div class="delivery__territory">
         <h2 class="delivery__subtitle">Территория обслуживания</h2>
-        <iframe class="delivery__map" src="https://yandex.ru/map-widget/v1/?um=constructor%3A67d8c4810053dd58db0a67c65b52d9a4aacc98b1214a9c6532662df398d269c9&amp;source=constructor"  frameborder="0"></iframe>
+        <iframe
+          class="delivery__map"
+          src="https://yandex.ru/map-widget/v1/?um=constructor%3A67d8c4810053dd58db0a67c65b52d9a4aacc98b1214a9c6532662df398d269c9&amp;source=constructor"
+          frameborder="0"
+        ></iframe>
       </div>
-
     </div>
-
   </section>
 </template>
 
@@ -79,7 +73,7 @@ const delivery = [
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
-    color: var(--color-text-black); 
+    color: var(--color-text-black);
   }
   &__terms {
     display: flex;
@@ -107,14 +101,14 @@ const delivery = [
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
-    color: var(--color-text-black); 
+    color: var(--color-text-black);
     margin-bottom: 35px;
     align-self: start;
   }
   &__map {
     display: flex;
-    width:  85%;
-    height: calc(450px/1155px) * 100vh;
+    width: 85%;
+    height: calc(450px / 1155px) * 100vh;
   }
 }
 
@@ -138,7 +132,7 @@ const delivery = [
     font-size: 14px;
     line-height: 16px;
     text-align: center;
-    color: var(--color-text-gray);   
+    color: var(--color-text-gray);
   }
 }
 

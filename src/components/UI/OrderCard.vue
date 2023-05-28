@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import removeOrder from '@/assets/icon/orderCard/cross.svg?component'
+import { defineProps } from 'vue'
+import removeOrder from '@/assets/icon/orderCard/cross.svg'
 
 const props = defineProps({
   id: {
@@ -20,9 +20,8 @@ const props = defineProps({
 
 <template>
   <div class="card">
-
     <div class="card__description">
-      <img class="food__image" alt="food"/>
+      <img class="food__image" alt="food" />
       <div class="food__info">
         <h3 class="food__title">{{ props.title }}</h3>
         <h4 class="food__count">{{ props.count }}</h4>
@@ -30,7 +29,7 @@ const props = defineProps({
     </div>
 
     <span class="food__price">{{ props.price }} &#8381;</span>
-    <removeOrder class="card__remove"></removeOrder>
+    <removeOrder class="card__remove"/>
   </div>
 </template>
 
@@ -43,7 +42,7 @@ const props = defineProps({
   box-shadow: 8px 11px 10px 2px rgba(34, 60, 80, 0.25);
   border-radius: 10px;
   padding: 10px;
-  transition: transform .1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
   width: 98%;
   cursor: pointer;
   &:hover {
@@ -66,7 +65,7 @@ const props = defineProps({
   &__image {
     width: 90px;
     height: 80px;
-    background: #D9D9D9;
+    background: #d9d9d9;
     margin-right: 25px;
     padding: 5px;
   }
@@ -81,5 +80,4 @@ const props = defineProps({
     margin-bottom: 6px;
   }
 }
-
 </style>

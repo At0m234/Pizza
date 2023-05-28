@@ -80,13 +80,13 @@ const props = defineProps({
     &:hover {
       outline-width: 1px;
       outline-style: solid;
-      outline-color: #FF6161;
+      outline-color: #ff6161;
     }
 
     &:focus {
       outline-width: 1px;
       outline-style: solid;
-      outline-color: #FF6161;
+      outline-color: #ff6161;
     }
 
     &::placeholder {
@@ -96,7 +96,6 @@ const props = defineProps({
       line-height: 16px;
       color: var(--order-placeholder);
     }
-
   }
 }
 .font-bold {
@@ -107,23 +106,22 @@ const props = defineProps({
   font-weight: 400;
 }
 
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-inner-spin-button {
   appearance: none;
   display: none;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
   background-image: url(@/assets/icon/orderRegistration/calendar.svg);
   width: 20px;
   height: 22px;
   cursor: pointer;
 }
 
-input[type="time"]::-webkit-calendar-picker-indicator {
+input[type='time']::-webkit-calendar-picker-indicator {
   background-image: url(@/assets/icon/orderRegistration/clock.svg);
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
-
 </style>

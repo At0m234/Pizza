@@ -3,5 +3,5 @@ import ShoppingСart from '@/components/ShoppingCart.vue'
 </script>
 
 <template>
-  <ShoppingСart/>
+  <ShoppingСart />
 </template>

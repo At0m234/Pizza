@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps } from 'vue'
 import copyIcon from '@/assets/icon/discountCard/copy.svg?url'
 import { useRoute } from 'vue-router'
 const route = useRoute()
@@ -30,19 +30,16 @@ const props = defineProps({
 function onCopyClick() {
   if (!props.promo) return console.error('Cannot copy undefined value')
   navigator.clipboard
-  .writeText(props.promo)
-  .then(() => {
-  })
-  .catch((error) => {
-    console.error('Failed to copy value to clipboard:', error)
-  })
+    .writeText(props.promo)
+    .then(() => {})
+    .catch((error) => {
+      console.error('Failed to copy value to clipboard:', error)
+    })
 }
-
 </script>
 
 <template>
-
-  <div v-if="!route.params.id" class="card" >
+  <div v-if="!route.params.id" class="card">
     <img class="card__image" :src="imageUrl" alt="Discount Card Image" />
     <div class="card__content">
       <h3 class="card__title">{{ title }}</h3>
@@ -67,7 +64,6 @@ function onCopyClick() {
     </div>
     <img class="details__image" :src="imageUrl" alt="Discount Card Image" />
   </div>
-
 </template>
 
 <style lang="scss" scoped>
@@ -203,7 +199,7 @@ function onCopyClick() {
     &__image {
       margin-left: 0;
       width: 70%;
-      height: calc(440/380)*50vh;
+      height: calc(440 / 380) * 50vh;
     }
   }
 }

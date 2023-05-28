@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import OrderCard from '@/components/UI/OrderCard.vue'
-import Slaider from '@/components/UI/Slaider.vue'
-import ProductCard from '@/components/UI/ProductCard.vue';
+import CustomSlaider from '@/components/UI/CustomSlaider.vue'
+import ProductCard from '@/components/UI/ProductCard.vue'
 // import InputPromo from '@/components/UI/InputPromo.vue';
 import router from '../router'
 import SubmitButton from '@/components/UI/SubmitButton.vue'
@@ -126,32 +126,30 @@ function onOrderClick() {
           /> -->
         </div>
         <!-- <router-link :to="{ path: '/order-registration'}"> -->
-          <SubmitButton
-            @click="onOrderClick()"
-            text="Оформить заказ"
-            :custom-styles="{marginTop: '35px'}"
-          />
+        <SubmitButton
+          @click="onOrderClick()"
+          text="Оформить заказ"
+          :custom-styles="{ marginTop: '35px' }"
+        />
         <!-- </router-link> -->
-        
       </div>
     </div>
     <router-view></router-view>
 
-    <Slaider title="Добавьте к заказу">
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-      <ProductCard/>
-    </Slaider>
-
+    <CustomSlaider title="Добавьте к заказу">
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+    </CustomSlaider>
   </section>
 </template>
 

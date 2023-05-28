@@ -5,7 +5,7 @@ import ProductCategory from "@/components/ProductCategory.vue";
 
 </script>
 <template>
-  <custom-carousel/>
-  <menu-icons/>
-  <product-category/>
+  <!-- <custom-carousel/> -->
+  <!-- <menu-icons/> -->
+  <!-- <product-category/> -->
 </template>

@@ -3,5 +3,5 @@ import OrderRegistration from '../components/OrderRegistration.vue'
 </script>
 
 <template>
-  <OrderRegistration/>
+  <OrderRegistration />
 </template>

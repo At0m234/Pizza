@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import router from '@/router';
+import router from '@/router'
 import DiscountCard from './UI/DiscountCard.vue'
 
 const discountCards = [
@@ -25,13 +25,12 @@ const discountCards = [
   },
 ]
 
-const redirectToDiscountCard = (id) => {  
+const redirectToDiscountCard = (id: string) => {
   router.push({
     name: 'DiscountCard',
     params: { id: id },
   })
 }
-
 </script>
 
 <template>

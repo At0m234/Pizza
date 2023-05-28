@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Discounts from '../components/Discounts.vue';
+import Discounts from '../components/Discounts.vue'
 </script>
 
 <template>
-  <Discounts/>
+  <Discounts />
 </template>

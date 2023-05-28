@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import pizzaImg from '@/assets/icon/404/pizza.svg';
-import fourImg from '@/assets/icon/404/four.svg';
-
+import pizzaImg from '@/assets/icon/404/pizza.svg'
+import fourImg from '@/assets/icon/404/four.svg'
 </script>
 
 <template>
   <section class="not-found">
     <div class="not-found__content">
-
       <span class="not-found__404">
-        <fourImg class="not-found__4"/>
-        <pizzaImg class="pizza"/>
-        <fourImg class="not-found__4"/>
+        <fourImg class="not-found__4" />
+        <pizzaImg class="pizza" />
+        <fourImg class="not-found__4" />
       </span>
-      <span class="not-found__text">Страница не найдена. Вернуться на 
-        <router-link to="/" style="text-decoration: none;"><span class="not-found__main-page">ГЛАВНУЮ</span></router-link>
+      <span class="not-found__text"
+        >Страница не найдена. Вернуться на
+        <router-link to="/" style="text-decoration: none"
+          ><span class="not-found__main-page">ГЛАВНУЮ</span></router-link
+        >
       </span>
-
     </div>
   </section>
 </template>
@@ -33,7 +33,7 @@ import fourImg from '@/assets/icon/404/four.svg';
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     max-width: 550px;
   }
   &__404 {
@@ -41,7 +41,7 @@ import fourImg from '@/assets/icon/404/four.svg';
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: calc(110/234)*50vh;
+    height: calc(110 / 234) * 50vh;
   }
 
   &__text {

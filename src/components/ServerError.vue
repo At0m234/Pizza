@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import pizzaImg from '@/assets/icon/404/pizza.svg';
-import fiveImg from '@/assets/icon/500/five.svg';
-
+import pizzaImg from '@/assets/icon/404/pizza.svg'
+import fiveImg from '@/assets/icon/500/five.svg'
 </script>
 
 <template>
   <section class="server-error">
-
     <span class="server-error__500">
       <fiveImg />
-      <pizzaImg class="pizza"/>
+      <pizzaImg class="pizza" />
       <pizzaImg />
     </span>
-    <span class="server-error__text">Ошибка сервера. Вернуться на 
-      <router-link to="/" style="text-decoration: none;"><span class="server-error__main-page">ГЛАВНУЮ</span></router-link>
+    <span class="server-error__text"
+      >Ошибка сервера. Вернуться на
+      <router-link to="/" style="text-decoration: none"
+        ><span class="server-error__main-page">ГЛАВНУЮ</span></router-link
+      >
     </span>
-
   </section>
 </template>
 
@@ -30,7 +30,7 @@ import fiveImg from '@/assets/icon/500/five.svg';
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     max-width: 550px;
   }
   &__500 {

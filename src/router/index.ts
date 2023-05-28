@@ -60,7 +60,7 @@ const router = createRouter({
       path: '/discounts/:id',
       name: 'DiscountCard',
       component: DiscountCard,
-      props: route => ({
+      props: (route) => ({
         id: route.params.id,
         title: route.params.title,
         text: route.params.text,

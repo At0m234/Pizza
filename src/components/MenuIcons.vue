@@ -64,7 +64,7 @@ const menuConfig = [
   },
 ]
 
-function onMenuItemClick(value: string){
+function onMenuItemClick(value: string) {
   console.log('###### onMenuItemClick', value)
 }
 </script>
@@ -72,17 +72,16 @@ function onMenuItemClick(value: string){
 <template>
   <div class="menu">
     <div
-        v-for="item of menuConfig"
-        :key="item.label"
-        class="menu__item"
-        @click="onMenuItemClick(item.value)"
+      v-for="item of menuConfig"
+      :key="item.label"
+      class="menu__item"
+      @click="onMenuItemClick(item.value)"
     >
-      <component :is="item.icon"/>
+      <component :is="item.icon" />
       <span class="menu__label">{{ item.label }}</span>
     </div>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .menu {

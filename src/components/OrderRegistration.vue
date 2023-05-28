@@ -216,7 +216,9 @@ function toggleButtonActive(buttons: Button[], index: number) {
       </div>
       <!-- ПОДТВЕРЖДЕНИЕ ЗАКАЗА ПОДТВЕРЖДЕНИЕ ЗАКАЗА ПОДТВЕРЖДЕНИЕ ЗАКАЗА ПОДТВЕРЖДЕНИЕ ЗАКАЗА ПОДТВЕРЖДЕНИЕ ЗАКАЗА ПОДТВЕРЖДЕНИЕ ЗАКАЗА ПОДТВЕРЖДЕНИЕ ЗАКАЗА -->
       <div class="order__block">
-        <h2 class="order__subtitle" style="margin-bottom: 0">ПОДТВЕРЖДЕНИЕ ЗАКАЗА</h2>
+        <h2 class="order__subtitle" style="margin-bottom: 0">
+          ПОДТВЕРЖДЕНИЕ ЗАКАЗА
+        </h2>
         <div class="order__block-btns">
           <CustomButton
             v-for="(button, index) in confirmationButtons"
@@ -400,12 +402,6 @@ function toggleButtonActive(buttons: Button[], index: number) {
     margin-top: 35px;
   }
 }
-
-// @media (max-width: 1078px) {
-//   .order__time-inputs {
-//     margin-top: 20px;
-//   }
-// }
 
 @media (max-width: 744px) {
   .order__form {

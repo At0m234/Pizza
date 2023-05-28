@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Logo from '@/assets/img/logo_big.svg?component'
-import Clock from '@/assets/icon/clock.svg?component'
-import Cart from '@/assets/icon/cart.svg?component'
+import Logo from '@/assets/img/logo_big.svg'
+import Clock from '@/assets/icon/clock.svg'
+import Cart from '@/assets/icon/cart.svg'
 // import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
 // import instagram from '@/assets/img/footer/instagram.svg?component'
 // import vk from '@/assets/img/footer/vk.svg?component'
@@ -12,7 +12,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 const screenWidth = ref(window.innerWidth)
 const isMenuOpen = ref(false)
 const selectedItem = ref('')
-const selectedLabel = ref('');
+const selectedLabel = ref('')
 
 const menu = [
   {
@@ -109,18 +109,17 @@ function toggleMenu() {
 }
 
 function onMenuClick(value: string) {
-  selectedLabel.value = value;
+  selectedLabel.value = value
   console.log(value)
   router.push('/' + value)
   isMenuOpen.value = false
 }
 
-function onMenuSelect (value: string) {
+function onMenuSelect(value: string) {
   console.log(value)
   router.push('/' + value)
   isMenuOpen.value = false
 }
-
 </script>
 
 <template>
@@ -206,7 +205,6 @@ function onMenuSelect (value: string) {
             :key="item.value"
             class="burger-menu__link"
           >
-
             <a @click="onMenuClick(item.value)">
               {{ item.label }}
             </a>
@@ -228,7 +226,6 @@ function onMenuSelect (value: string) {
                 </a>
               </option>
             </select>
-
           </span>
 
           <div class="burger-menu__phone">
@@ -415,7 +412,7 @@ function onMenuSelect (value: string) {
       fill: var(--color-warning);
     }
   }
-  
+
   &:active {
     color: var(--color-warning);
     transform: scale(1.15);

@@ -8,7 +8,6 @@ interface Props {
 const props = defineProps<Props>()
 const popupText = ref(props.text)
 const isPopupVisible = ref(true)
-
 </script>
 <template>
   <div class="popup__success" v-if="isPopupVisible">

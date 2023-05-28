@@ -24,7 +24,7 @@ const props = defineProps({
     :click="click"
     :style="customStyles"
     :class="{ active }"
-    :active = "active"
+    :active="active"
   >
     {{ text }}
   </button>
