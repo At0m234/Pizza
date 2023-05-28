@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ShoppingСart from '@/components/ShoppingСart/ShoppingCart.vue'
+import ShoppingСart from '@/components/ShoppingCart.vue'
 </script>
 
 <template>
