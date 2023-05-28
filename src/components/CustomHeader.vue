@@ -7,12 +7,16 @@ import Cart from '@/assets/icon/cart.svg?component'
 // import vk from '@/assets/img/footer/vk.svg?component'
 import { HEAD_CONST } from '@/constants'
 import router from '../router'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { useGlobalStore } from '@/stores/global'
 
+const globalStore = useGlobalStore()
 const screenWidth = ref(window.innerWidth)
 const isMenuOpen = ref(false)
 const selectedItem = ref('')
-const selectedLabel = ref('');
+const selectedLabel = computed(() => {
+  return globalStore.state.selectedMenuItem
+})
 
 const menu = [
   {
@@ -109,18 +113,16 @@ function toggleMenu() {
 }
 
 function onMenuClick(value: string) {
-  selectedLabel.value = value;
-  console.log(value)
+  globalStore.state.selectedMenuItem = value
   router.push('/' + value)
   isMenuOpen.value = false
 }
 
-function onMenuSelect (value: string) {
+function onMenuSelect(value: string) {
   console.log(value)
   router.push('/' + value)
   isMenuOpen.value = false
 }
-
 </script>
 
 <template>
@@ -206,7 +208,6 @@ function onMenuSelect (value: string) {
             :key="item.value"
             class="burger-menu__link"
           >
-
             <a @click="onMenuClick(item.value)">
               {{ item.label }}
             </a>
@@ -228,7 +229,6 @@ function onMenuSelect (value: string) {
                 </a>
               </option>
             </select>
-
           </span>
 
           <div class="burger-menu__phone">
@@ -370,7 +370,7 @@ function onMenuSelect (value: string) {
   &__wrapper {
     width: 100%;
     height: 100px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
   }
 
   &__logo {
@@ -415,7 +415,7 @@ function onMenuSelect (value: string) {
       fill: var(--color-warning);
     }
   }
-  
+
   &:active {
     color: var(--color-warning);
     transform: scale(1.15);

@@ -1,16 +1,16 @@
-import {reactive} from 'vue'
-import {defineStore} from 'pinia'
+import { reactive } from 'vue'
+import { defineStore } from 'pinia'
 
 export const useGlobalStore = defineStore('global', () => {
   const state = reactive<{
-    test: any,
+    selectedMenuItem: string
   }>({
-    test: false,
+    selectedMenuItem: '',
   })
 
-  function setValue(payload: { field: keyof typeof state, value: any }) {
+  function setValue(payload: { field: keyof typeof state; value: any }) {
     state[payload.field] = payload.value
   }
 
-  return {state, setValue}
+  return { state, setValue }
 })

@@ -1,52 +1,54 @@
 <script setup lang="ts">
-import {HEAD_CONST} from '@/constants'
-import router from '../router';
-import { ref } from 'vue';
+import { HEAD_CONST } from '@/constants'
+import router from '../router'
+import { computed } from 'vue'
+import { useGlobalStore } from '@/stores/global'
 // import whatsUp from '@/assets/icon/footer/whatsUp.svg?component'
 // import instagram from '@/assets/icon/footer/instagram.svg?component'
 // import vk from '@/assets/icon/footer/vk.svg?component'
-const selectedLabel = ref('');
-
+const globalStore = useGlobalStore()
+const selectedLabel = computed(() => {
+  return globalStore.state.selectedMenuItem
+})
 const menu = [
-  {label: 'Пицца', value: 'pizza'},
-  {label: 'Вок', value: 'wok'},
-  {label: 'Супы', value: 'soup'},
-  {label: 'Закуски', value: 'snacks'},
-  {label: 'Салаты', value: 'salads'},
-  {label: 'Сэндвичи', value: 'sandwiches'},
-  {label: 'Соусы', value: 'sauces'},
-  {label: 'Десерты', value: 'desserts'},
-  {label: 'Напитки', value: 'drinks'},
-  {label: 'Магазин', value: 'shop'},
+  { label: 'Пицца', value: 'pizza' },
+  { label: 'Вок', value: 'wok' },
+  { label: 'Супы', value: 'soup' },
+  { label: 'Закуски', value: 'snacks' },
+  { label: 'Салаты', value: 'salads' },
+  { label: 'Сэндвичи', value: 'sandwiches' },
+  { label: 'Соусы', value: 'sauces' },
+  { label: 'Десерты', value: 'desserts' },
+  { label: 'Напитки', value: 'drinks' },
+  { label: 'Магазин', value: 'shop' },
 ]
 const info = [
-  {label: 'Доставка и оплата', value: 'delivery'},
-  {label: 'О компании', value: 'about'},
-  {label: 'Условия обслуживания', value: 'terms'},
-  {label: 'Сотрудничество', value: 'partnership'},
+  { label: 'Доставка и оплата', value: 'delivery' },
+  { label: 'О компании', value: 'about' },
+  { label: 'Условия обслуживания', value: 'terms' },
+  { label: 'Сотрудничество', value: 'partnership' },
 ]
 const personal = [
-  {label: 'Вход в личный кабинет', value: 'login'},
-  {label: 'Акции и промокоды', value: 'discounts'},
-  {label: 'Обратная связь', value: 'feedback'},
-  {label: 'Отзывы', value: 'reviews'},
+  { label: 'Вход в личный кабинет', value: 'login' },
+  { label: 'Акции и промокоды', value: 'discounts' },
+  { label: 'Обратная связь', value: 'feedback' },
+  { label: 'Отзывы', value: 'reviews' },
 ]
 
-function onMenuClick(value: any) {
-  selectedLabel.value = value
-  router.push('/' + value);
-  console.log('###### onMenuClick', value)
-}
+// function onMenuClick(value: any) {
+//   console.log('###### onMenuClick', value)
+//   selectedLabel.value = value
+//   router.push('/' + value)
+// }
 
 function onPhoneClick() {
-  console.log('###### onPhoneClick' )
+  console.log('###### onPhoneClick')
 }
 
 function onInfoClick(value: any) {
-  selectedLabel.value = value
-  router.push('/' + value);
+  globalStore.state.selectedMenuItem = value
+  router.push('/' + value)
 }
-
 </script>
 
 <template>
@@ -60,9 +62,9 @@ function onInfoClick(value: any) {
             class="category__item"
             :class="{ selected: selectedLabel === item.value }"
             :key="item"
-            @click="onMenuClick(item.value)"
-            >
-            {{item.label}}
+            @click="onInfoClick(item.value)"
+          >
+            {{ item.label }}
           </li>
         </ul>
       </div>
@@ -76,7 +78,7 @@ function onInfoClick(value: any) {
             @click="onInfoClick(item.value)"
             :class="{ selected: selectedLabel === item.value }"
           >
-            {{item.label}}
+            {{ item.label }}
           </li>
         </ul>
       </div>
@@ -90,14 +92,14 @@ function onInfoClick(value: any) {
             @click="onInfoClick(item.value)"
             :class="{ selected: selectedLabel === item.value }"
           >
-            {{item.label}}
+            {{ item.label }}
           </li>
         </ul>
       </div>
       <div class="category category_type_contacts">
         <h3 class="category__title">Контакты</h3>
         <div class="phone">
-          <a class="phone__number" :href="'tel:'+HEAD_CONST.PHONE">
+          <a class="phone__number" :href="'tel:' + HEAD_CONST.PHONE">
             {{ HEAD_CONST.PHONE }}
           </a>
           <!-- <div class="category__socials">
@@ -111,8 +113,10 @@ function onInfoClick(value: any) {
               <vk/>
             </a>
           </div> -->
-          
-          <span class="phone__feedback" @click="onPhoneClick">Перезвоните мне</span>
+
+          <span class="phone__feedback" @click="onPhoneClick"
+            >Перезвоните мне</span
+          >
         </div>
       </div>
     </div>
@@ -131,7 +135,7 @@ function onInfoClick(value: any) {
   }
 }
 .category {
-  &__wrapper{
+  &__wrapper {
     padding: 0;
     display: grid;
     gap: 15px;
@@ -148,7 +152,7 @@ function onInfoClick(value: any) {
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
-    transition: transform .2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
     &:hover {
       color: var(--color-warning);
       transform: scale(1.15);
@@ -167,7 +171,7 @@ function onInfoClick(value: any) {
     transition: opacity 0.15s ease-in-out;
     cursor: pointer;
     &:hover {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 }
@@ -179,7 +183,7 @@ function onInfoClick(value: any) {
     font-size: 20px;
     font-weight: bold;
     color: var(--color-text);
-    transition: color .2s ease-in-out;
+    transition: color 0.2s ease-in-out;
     &:hover {
       color: var(--color-warning);
     }
@@ -209,7 +213,6 @@ function onInfoClick(value: any) {
     display: none;
   }
 
-
   .category__menu {
     grid-template-columns: minmax(60px, 60px) 1fr;
   }
@@ -226,5 +229,4 @@ function onInfoClick(value: any) {
     display: none;
   }
 }
-
 </style>
