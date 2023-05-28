@@ -1,15 +1,36 @@
 <script setup lang="ts">
+import router from '@/router';
 import DiscountCard from './UI/DiscountCard.vue'
-import { ref } from 'vue';
 
-const discountCards = ref([
+const discountCards = [
   {
-    id: '1', imageUrl: 'https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80', title: 'Подарок 1', subtitle: 'Большая пицца в подарок!', btnText:'Подробнее', promo: 'FIESTA', text: '1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis sem sed magna fringilla, eu congue massa consequat. Maecenas ut ornare velit. Donec vel quam mi. Sed tellus leo, pharetra in pulvinar eget, accumsan sed erat. Vestibulum dictum rhoncus nibh id blandit. Nulla posuere, dolor eu hendrerit laoreet, felis nisl ultrices lectus, ut tincidunt turpis odio ut dui. Ut tempor efficitur ligula mollis facilisis. Duis tempus semper enim in ornare. ',
+    id: '1',
+    imageUrl:
+      'https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
+    title: 'Подарок 1',
+    subtitle: 'Большая пицца в подарок!',
+    btnText: 'Подробнее',
+    promo: 'FIESTA',
+    text: '1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis sem sed magna fringilla, eu congue massa consequat. Maecenas ut ornare velit. Donec vel quam mi. Sed tellus leo, pharetra in pulvinar eget, accumsan sed erat. Vestibulum dictum rhoncus nibh id blandit. Nulla posuere, dolor eu hendrerit laoreet, felis nisl ultrices lectus, ut tincidunt turpis odio ut dui. Ut tempor efficitur ligula mollis facilisis. Duis tempus semper enim in ornare. ',
   },
   {
-    id: '2', imageUrl: 'https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80', title: 'Подарок 2', subtitle: 'Большая пицца в подарок!', btnText:'Подробнее', promo: 'FIESTA', text: '2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis sem sed magna fringilla, eu congue massa consequat. Maecenas ut ornare velit. Donec vel quam mi. Sed tellus leo, pharetra in pulvinar eget, accumsan sed erat. Vestibulum dictum rhoncus nibh id blandit. Nulla posuere, dolor eu hendrerit laoreet, felis nisl ultrices lectus, ut tincidunt turpis odio ut dui. Ut tempor efficitur ligula mollis facilisis. ',
+    id: '2',
+    imageUrl:
+      'https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
+    title: 'Подарок 2',
+    subtitle: 'Большая пицца в подарок!',
+    btnText: 'Подробнее',
+    promo: 'FIESTA',
+    text: '2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis sem sed magna fringilla, eu congue massa consequat. Maecenas ut ornare velit. Donec vel quam mi. Sed tellus leo, pharetra in pulvinar eget, accumsan sed erat. Vestibulum dictum rhoncus nibh id blandit. Nulla posuere, dolor eu hendrerit laoreet, felis nisl ultrices lectus, ut tincidunt turpis odio ut dui. Ut tempor efficitur ligula mollis facilisis. ',
   },
-])
+]
+
+const redirectToDiscountCard = (id) => {  
+  router.push({
+    name: 'DiscountCard',
+    params: { id: id },
+  })
+}
 
 </script>
 
@@ -18,24 +39,16 @@ const discountCards = ref([
     <h1 class="discounts__title">Акции и спецпредложения</h1>
     <div class="discounts__container">
       <div v-for="card in discountCards" :key="card.id">
-        <router-link style="text-decoration: none;" :to="{ name: 'DiscountCard', params: { 
-          id: card.id,
-          title: card.title,
-          text: card.text,
-          promo: card.promo,
-          imageUrl: card.imageUrl,
-        }  
-        }">
-          <DiscountCard
-            :id=card.id
-            :imageUrl=card.imageUrl
-            :title=card.title
-            :subtitle=card.subtitle
-            :btnText=card.btnText
-            :text=card.text
-            :promo=card.promo
-          />
-        </router-link>
+        <DiscountCard
+          :id="card.id"
+          :imageUrl="card.imageUrl"
+          :title="card.title"
+          :subtitle="card.subtitle"
+          :btnText="card.btnText"
+          :text="card.text"
+          :promo="card.promo"
+          @click="redirectToDiscountCard(card.id)"
+        />
       </div>
     </div>
   </section>
