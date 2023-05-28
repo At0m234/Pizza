@@ -1,10 +1,8 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue';
 import copyIcon from '@/assets/icon/discountCard/copy.svg?url'
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
+import { useRoute } from 'vue-router'
+const route = useRoute()
 const props = defineProps({
   id: {
     type: String,
@@ -40,13 +38,11 @@ function onCopyClick() {
   })
 }
 
-const redirectToDiscountCard = () => {
-  router.push({ name: 'DiscountCard', params: props });
-};
 </script>
 
 <template>
-  <div v-if="!$route.params.id" class="card" @click="redirectToDiscountCard">
+
+  <div v-if="!route.params.id" class="card" >
     <img class="card__image" :src="imageUrl" alt="Discount Card Image" />
     <div class="card__content">
       <h3 class="card__title">{{ title }}</h3>
@@ -54,6 +50,7 @@ const redirectToDiscountCard = () => {
       <button class="card__btn">{{ btnText }}</button>
     </div>
   </div>
+
   <div v-else class="card__details">
     <div class="details__info">
       <h3 class="details__title">{{ title }}</h3>
@@ -70,6 +67,7 @@ const redirectToDiscountCard = () => {
     </div>
     <img class="details__image" :src="imageUrl" alt="Discount Card Image" />
   </div>
+
 </template>
 
 <style lang="scss" scoped>
