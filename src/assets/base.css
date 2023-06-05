@@ -89,3 +89,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+  display: none;
+}
