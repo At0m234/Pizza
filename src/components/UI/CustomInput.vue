@@ -9,6 +9,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  inputStyles: {
+    type: Object,
+    default: () => ({}),
+  },
   name: {
     type: String,
   },
@@ -25,12 +29,13 @@ const props = defineProps({
     type: String,
   },
   value: {
-    type: String,
+    type: [String, Number, Date],
   },
   maxlength: {
     type: Number,
   },
 })
+
 </script>
 
 <template>
@@ -49,8 +54,9 @@ const props = defineProps({
       :placeholder="placeholder"
       :required="required"
       :type="type"
-      :value="value"
       :maxlength="maxlength"
+      @input="$emit('update:modelValue', $event.target.value)"
+      :style="inputStyles"
     />
   </div>
 </template>
@@ -104,11 +110,6 @@ const props = defineProps({
 
 .font-regular {
   font-weight: 400;
-}
-
-input[type='number']::-webkit-inner-spin-button {
-  appearance: none;
-  display: none;
 }
 
 input[type='date']::-webkit-calendar-picker-indicator {
