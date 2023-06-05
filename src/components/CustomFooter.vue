@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { HEAD_CONST } from '@/constants'
 import router from '../router'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useGlobalStore } from '@/stores/global'
 // import whatsUp from '@/assets/icon/footer/whatsUp.svg?component'
 // import instagram from '@/assets/icon/footer/instagram.svg?component'
 // import vk from '@/assets/icon/footer/vk.svg?component'
+import CallMeModal from './UI/CallMeModal.vue'
+
+const сallMeModalVisible = ref(false)
+
 const globalStore = useGlobalStore()
 const selectedLabel = computed(() => {
   return globalStore.state.selectedMenuItem
 })
+
 const menu = [
   { label: 'Пицца', value: 'pizza' },
   { label: 'Вок', value: 'wok' },
@@ -41,8 +46,8 @@ const personal = [
 //   router.push('/' + value)
 // }
 
-function onPhoneClick() {
-  console.log('###### onPhoneClick')
+function showCallMeModal() {
+  сallMeModalVisible.value = true
 }
 
 function onInfoClick(value: any) {
@@ -61,7 +66,7 @@ function onInfoClick(value: any) {
             v-for="item of menu"
             class="category__item"
             :class="{ selected: selectedLabel === item.value }"
-            :key="item"
+            :key="item.value"
             @click="onInfoClick(item.value)"
           >
             {{ item.label }}
@@ -74,7 +79,7 @@ function onInfoClick(value: any) {
           <li
             v-for="item of info"
             class="category__item"
-            :key="item"
+            :key="item.value"
             @click="onInfoClick(item.value)"
             :class="{ selected: selectedLabel === item.value }"
           >
@@ -88,7 +93,7 @@ function onInfoClick(value: any) {
           <li
             v-for="item of personal"
             class="category__item"
-            :key="item"
+            :key="item.value"
             @click="onInfoClick(item.value)"
             :class="{ selected: selectedLabel === item.value }"
           >
@@ -114,16 +119,31 @@ function onInfoClick(value: any) {
             </a>
           </div> -->
 
-          <span class="phone__feedback" @click="onPhoneClick"
+          <span class="phone__feedback" @click="showCallMeModal"
             >Перезвоните мне</span
           >
         </div>
       </div>
     </div>
+    <transition name="modal">
+      <CallMeModal
+        v-if="сallMeModalVisible"
+        @close="сallMeModalVisible = false"
+      />
+    </transition>
   </footer>
 </template>
 
 <style lang="scss" scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
 .footer {
   display: flex;
   justify-content: space-between;
