@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import Logo from '@/assets/img/logo_big.svg?component'
-import Clock from '@/assets/icon/clock.svg?component'
-import Cart from '@/assets/icon/cart.svg?component'
+import Logo from '@/assets/img/logo_big.svg'
+import Clock from '@/assets/icon/clock.svg'
+import Cart from '@/assets/icon/cart.svg'
 // import whatsUp from '@/assets/img/footer/whatsUp.svg?component'
 // import instagram from '@/assets/img/footer/instagram.svg?component'
 // import vk from '@/assets/img/footer/vk.svg?component'
 import { HEAD_CONST } from '@/constants'
 import router from '../router'
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import LoginModal from './UI/LoginModal.vue'
 import { useGlobalStore } from '@/stores/global'
 
 const globalStore = useGlobalStore()
 const screenWidth = ref(window.innerWidth)
 const isMenuOpen = ref(false)
+const loginModalVisible = ref(false)
 const selectedItem = ref('')
 const selectedLabel = computed(() => {
   return globalStore.state.selectedMenuItem
@@ -123,6 +125,10 @@ function onMenuSelect(value: string) {
   router.push('/' + value)
   isMenuOpen.value = false
 }
+
+function showLoginModal() {
+  loginModalVisible.value = true
+}
 </script>
 
 <template>
@@ -153,7 +159,9 @@ function onMenuSelect(value: string) {
             class="menu__item"
             :class="{ selected: selectedLabel === item.value }"
             :key="item.value"
-            @click="onMenuClick(item.value)"
+            @click="
+              item.label === 'Вход' ? showLoginModal() : onMenuClick(item.value)
+            "
             >{{ item.label }}</span
           >
 
@@ -255,10 +263,22 @@ function onMenuSelect(value: string) {
         <cart class="menu__item" @click="onCartClick" />
       </template>
     </div>
+    <transition name="modal">
+    <LoginModal v-if="loginModalVisible" @close="loginModalVisible = false" />
+    </transition>
   </header>
 </template>
 
 <style lang="scss" scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
 .burger-menu {
   display: flex;
   justify-content: center;
