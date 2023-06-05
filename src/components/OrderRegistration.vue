@@ -232,13 +232,13 @@ function toggleButtonActive(buttons: Button[], index: number) {
           Для ускорения обработки вашего заказа, используйте способ
           подтверждения по SMS
         </h3>
-        <CustomInput
+        <textarea
+          class="order__comment"
+          placeholder="Комментарий к заказу"
           name="comment"
-          label="Комментарий к заказу"
-          :customStyles="{ width: '100%', minWidth: '320px' }"
           type="text"
-          :maxlength="100"
-        />
+          :maxlength="300"
+        ></textarea>
       </div>
       <!-- Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit Submit -->
       <div class="order__submit">
@@ -355,6 +355,40 @@ function toggleButtonActive(buttons: Button[], index: number) {
     color: var(--color-text-black);
     margin-top: 20px;
     margin-bottom: 35px;
+  }
+
+  &__comment {
+    padding: 14px 20px;
+    background: var(--bg-input-order);
+    border-radius: 5px;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--color-text-black);
+    width: 100%;
+    resize: vertical;
+
+    &:hover {
+      outline-width: 1px;
+      outline-style: solid;
+      outline-color: #ff6161;
+    }
+
+    &:focus {
+      outline-width: 1px;
+      outline-style: solid;
+      outline-color: #ff6161;
+    }
+
+    &::placeholder {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--order-placeholder);
+    }
   }
 
   &__submit {
