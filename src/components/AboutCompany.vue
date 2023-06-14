@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ORGANIZATION_INFO } from '../constants'
+import { ORGANIZATION_INFO } from '@/constants'
 
 const values = [
   { id: 1, value: 'вкусная и качественная еда может быть доступной' },
