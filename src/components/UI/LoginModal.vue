@@ -27,7 +27,7 @@ const submitPinCode = () => {
 }
 
 const redirectToPersonalAccount = () => {
-  router.push('/personal-account')
+  router.push('/profile')
 }
 </script>
 
@@ -38,7 +38,7 @@ const redirectToPersonalAccount = () => {
       <template v-if="!sendCode">
         <h2 class="modal__title">Введите номер телефона</h2>
         <CustomInput
-          placeholder="+7 (99Х) ХХХ-ХХ-ХХ"
+          placeholder="+7 (XXХ) ХХХ-ХХ-ХХ"
           type="number"
           :customStyles="{ marginBottom: '30px', width: '230px' }"
           :required="true"
