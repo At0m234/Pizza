@@ -8,13 +8,15 @@ import Cart from '@/assets/icon/cart.svg'
 import { HEAD_CONST } from '@/constants'
 import router from '../router'
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import LoginModal from './UI/LoginModal.vue'
 import { useGlobalStore } from '@/stores/global'
+import LoginModal from './UI/LoginModal.vue'
+import CallMeModal from './UI/CallMeModal.vue'
 
+const loginModalVisible = ref(false)
+const сallMeModalVisible = ref(false)
 const globalStore = useGlobalStore()
 const screenWidth = ref(window.innerWidth)
 const isMenuOpen = ref(false)
-const loginModalVisible = ref(false)
 const selectedItem = ref('')
 const selectedLabel = computed(() => {
   return globalStore.state.selectedMenuItem
@@ -86,8 +88,8 @@ const menuConfig = [
   },
 ]
 
-function onPhoneClick() {
-  console.log('###### onPhoneClick')
+function showCallMeModal() {
+  сallMeModalVisible.value = true
 }
 
 function onCartClick() {
@@ -148,22 +150,14 @@ function showLoginModal() {
           <a class="phone__number" :href="'tel:' + HEAD_CONST.PHONE">
             {{ HEAD_CONST.PHONE }}
           </a>
-          <span class="phone__feedback" @click="onPhoneClick"
-            >Перезвоните мне</span
-          >
+          <span class="phone__feedback" @click="showCallMeModal">Перезвоните мне</span>
         </div>
         <Logo class="header__logo" @click="onLogoClick" />
         <div class="menu">
-          <span
-            v-for="item in menu"
-            class="menu__item"
-            :class="{ selected: selectedLabel === item.value }"
-            :key="item.value"
-            @click="
+          <span v-for="item in menu" class="menu__item" :class="{ selected: selectedLabel === item.value }"
+            :key="item.value" @click="
               item.label === 'Вход' ? showLoginModal() : onMenuClick(item.value)
-            "
-            >{{ item.label }}</span
-          >
+              ">{{ item.label }}</span>
 
           <cart class="menu__item" @click="onCartClick" />
         </div>
@@ -174,20 +168,14 @@ function showLoginModal() {
           <a class="phone__number" :href="'tel:' + HEAD_CONST.PHONE">
             {{ HEAD_CONST.PHONE }}
           </a>
-          <span class="phone__feedback" @click="onPhoneClick"
-            >Перезвоните мне</span
-          >
+          <span class="phone__feedback" @click="showCallMeModal">Перезвоните мне</span>
         </div>
         <Logo class="header__logo" @click="onLogoClick" />
         <div class="menu">
-          <span
-            v-for="item in menu"
-            class="menu__item"
-            :class="{ selected: selectedLabel === item.value }"
-            :key="item.value"
-            @click="onMenuClick(item.value)"
-            >{{ item.label }}</span
-          >
+          <span v-for="item in menu" class="menu__item" :class="{ selected: selectedLabel === item.value }"
+            :key="item.value" @click="
+              item.label === 'Вход' ? showLoginModal() : onMenuClick(item.value)
+              ">{{ item.label }}</span>
           <cart class="menu__item" @click="onCartClick" />
         </div>
       </template>
@@ -195,14 +183,10 @@ function showLoginModal() {
       <template v-if="screenWidth < 780 && screenWidth > 660">
         <Logo class="header__logo" @click="onLogoClick" />
         <div class="menu">
-          <span
-            v-for="item in menu"
-            class="menu__item"
-            :class="{ selected: selectedLabel === item.value }"
-            :key="item.value"
-            @click="onMenuClick(item.value)"
-            >{{ item.label }}</span
-          >
+          <span v-for="item in menu" class="menu__item" :class="{ selected: selectedLabel === item.value }"
+            :key="item.value" @click="
+              item.label === 'Вход' ? showLoginModal() : onMenuClick(item.value)
+              ">{{ item.label }}</span>
 
           <cart class="menu__item" @click="onCartClick" />
         </div>
@@ -211,27 +195,16 @@ function showLoginModal() {
       <template v-if="screenWidth <= 660">
         <button class="burger-menu" @click="toggleMenu"></button>
         <div class="burger-menu__list" v-bind:class="{ hidden: !isMenuOpen }">
-          <span
-            v-for="item in menu"
-            :key="item.value"
-            class="burger-menu__link"
-          >
-            <a @click="onMenuClick(item.value)">
+          <span v-for="item in menu" :key="item.value" class="burger-menu__link">
+            <a @click="
+              item.label === 'Вход' ? showLoginModal() : onMenuClick(item.value)
+              ">
               {{ item.label }}
             </a>
 
-            <select
-              class="burger-menu__select"
-              v-if="item.value === 'menu'"
-              v-model="selectedItem"
-              @change="onMenuSelect(selectedItem)"
-            >
-              <option
-                class="burger-menu__option"
-                v-for="item in menuConfig"
-                :key="item.value"
-                :value="item.value"
-              >
+            <select class="burger-menu__select" v-if="item.value === 'menu'" v-model="selectedItem"
+              @change="onMenuSelect(selectedItem)">
+              <option class="burger-menu__option" v-for="item in menuConfig" :key="item.value" :value="item.value">
                 <a>
                   {{ item.label }}
                 </a>
@@ -240,12 +213,10 @@ function showLoginModal() {
           </span>
 
           <div class="burger-menu__phone">
-            <a
-              class="burger-menu__phone_number"
-              :href="'tel:' + HEAD_CONST.PHONE"
-            >
+            <a class="burger-menu__phone_number" :href="'tel:' + HEAD_CONST.PHONE">
               {{ HEAD_CONST.PHONE }}
             </a>
+            <span class="phone__feedback" @click="showCallMeModal">Перезвоните мне</span>
             <!-- <div class="category__socials">
               <a class="category__socials-link" href="https://wa.me/74999999999" target="_blank">
                 <whatsUp/>
@@ -264,7 +235,10 @@ function showLoginModal() {
       </template>
     </div>
     <transition name="modal">
-    <LoginModal v-if="loginModalVisible" @close="loginModalVisible = false" />
+      <LoginModal v-if="loginModalVisible" @close="loginModalVisible = false" />
+    </transition>
+    <transition name="modal">
+      <CallMeModal v-if="сallMeModalVisible" @close="сallMeModalVisible = false" />
     </transition>
   </header>
 </template>
@@ -279,6 +253,7 @@ function showLoginModal() {
 .modal-leave-to {
   opacity: 0;
 }
+
 .burger-menu {
   display: flex;
   justify-content: center;
@@ -292,6 +267,7 @@ function showLoginModal() {
   position: relative;
   background-color: transparent;
   border: none;
+
   &__list {
     display: flex;
     flex-direction: column;
@@ -305,17 +281,20 @@ function showLoginModal() {
     background: #fff;
     z-index: 2;
   }
+
   &__link {
     display: flex;
     min-width: 100%;
     border-bottom: 1px solid #e7e7e7;
     transition: transform 0.2s ease-in-out;
     padding: 0 20px;
+
     &:hover {
       color: var(--color-warning);
       // transform: scale(1.15);
     }
   }
+
   &__link a {
     font-style: normal;
     font-weight: 700;
@@ -324,21 +303,26 @@ function showLoginModal() {
     color: var(--color-text-gray);
     margin: 20px 0;
   }
+
   &__phone {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 35px;
   }
+
   &__phone_number {
     font-size: 20px;
     font-weight: bold;
     color: var(--color-text);
     transition: color 0.2s ease-in-out;
+
     &:hover {
       color: var(--color-warning);
     }
   }
+
   &__select {
     display: flex;
     margin-left: auto;
@@ -351,6 +335,7 @@ function showLoginModal() {
       border: none;
     }
   }
+
   &__option {
     display: flex;
     background: #ffffff;
@@ -398,12 +383,14 @@ function showLoginModal() {
     max-width: 170px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+
     &:hover {
       color: var(--color-warning);
       transform: scale(1.15);
     }
   }
 }
+
 .info {
   &__delivery {
     display: flex;
@@ -415,6 +402,7 @@ function showLoginModal() {
     margin-left: 8px;
   }
 }
+
 .menu {
   display: flex;
   gap: 1rem;
@@ -445,6 +433,7 @@ function showLoginModal() {
     }
   }
 }
+
 .phone {
   display: flex;
   flex-direction: column;
@@ -455,6 +444,7 @@ function showLoginModal() {
     font-weight: bold;
     color: var(--color-text);
     transition: color 0.2s ease-in-out;
+
     &:hover {
       color: var(--color-warning);
     }
@@ -469,15 +459,18 @@ function showLoginModal() {
 
 .category {
   margin-top: 35px;
+
   &__socials {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
   }
+
   &__socials-link {
     transition: opacity 0.15s ease-in-out;
     cursor: pointer;
+
     &:hover {
       opacity: 0.5;
     }
