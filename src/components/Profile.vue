@@ -31,10 +31,15 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
 <template>
   <section class="profile">
     <nav class="profile__navigation">
-      <CustomButton v-for="(item, index) in profileNavigation" :key="index"
-        @click="navigateTo(profileNavigation, index, item.component)" :active="item.active" :text="item.title"
-        :customStyles="{ borderRadius: '10px', padding: '5px 10px', marginBottom: '20px' }">
-      </CustomButton>
+      <div class="profile__navigation-btns">
+        <CustomButton v-for="(item, index) in profileNavigation" :key="index"
+          @click="navigateTo(profileNavigation, index, item.component)" :active="item.active" :text="item.title"
+          :customStyles="{ borderRadius: '10px', padding: '5px 10px', marginBottom: '20px' }">
+        </CustomButton>
+      </div>
+      <div class="clear-orders" v-if="profileNavigation[2].active">
+        <button class="clear-orders__btn">Удалить</button>
+      </div>
     </nav>
     <div class="profile__content">
       <component :is="activeComponent" v-if="activeComponent" />
@@ -51,8 +56,14 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 550px;
+    max-width: 1040px;
     margin: 40px 0 0 0;
+  }
+
+  &__navigation-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
   }
 
   &__content {
@@ -63,6 +74,30 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
     max-width: 1040px;
     border: 1px solid var(--border-order);
     border-radius: 10px;
+  }
+}
+
+.clear-orders {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  justify-self: flex-end;
+  align-self: center;
+  &__btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #AFAFAF;
+    margin-bottom: 20px;
+
+    &:hover {
+      transform: scale(1.25);
+      color: var(--color-warning);
+    }
   }
 }
 
