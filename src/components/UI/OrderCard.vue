@@ -15,6 +15,10 @@ const props = defineProps({
   price: {
     type: String,
   },
+  history: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
@@ -29,7 +33,7 @@ const props = defineProps({
     </div>
 
     <span class="food__price">{{ props.price }} &#8381;</span>
-    <removeOrder class="card__remove"/>
+    <removeOrder class="card__remove" :history=" history " v-if="!history"/>
   </div>
 </template>
 
@@ -45,13 +49,16 @@ const props = defineProps({
   transition: transform 0.1s ease-in-out;
   width: 98%;
   cursor: pointer;
+
   &:hover {
     transform: scale(1.05);
   }
+
   &__description {
     display: flex;
     align-items: center;
   }
+
   &__remove {
     position: absolute;
     width: 26px;
@@ -69,6 +76,7 @@ const props = defineProps({
     margin-right: 25px;
     padding: 5px;
   }
+
   &__info {
     font-style: normal;
     font-weight: 400;
@@ -76,8 +84,8 @@ const props = defineProps({
     line-height: 16px;
     color: var(--color-text-black);
   }
+
   &__title {
     margin-bottom: 6px;
   }
-}
-</style>
+}</style>
