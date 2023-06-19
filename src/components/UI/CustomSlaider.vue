@@ -122,7 +122,7 @@ function moveSlider(direction: 'left' | 'right'): void {
     }
 
     &::-webkit-scrollbar-track {
-      background-color: var(--color-light-gray);
+      background-color: transparent;
     }
   }
 }
