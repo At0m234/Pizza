@@ -152,4 +152,9 @@ const props = defineProps({
     width: 100%;
   }
 }
+@media (max-width: 580px) {
+  .order {
+    padding: 20px;
+  }
+}
 </style>
