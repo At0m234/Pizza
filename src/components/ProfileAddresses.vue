@@ -3,8 +3,8 @@ import { ref } from 'vue';
 import CustomInput from '../components/UI/CustomInput.vue';
 import SubmitButton from '../components/UI/SubmitButton.vue';
 import CustomCheckbox from '../components/UI/CustomCheckbox.vue';
-import edit from '../assets/icon/ProfileAddresses/edit.svg';
-import add from '../assets/icon/ProfileAddresses/add.svg';
+import edit from '../assets/icon/Profile/edit.svg';
+import add from '../assets/icon/Profile/add.svg';
 
 const addNewAddress = ref(false);
 
