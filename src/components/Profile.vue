@@ -34,11 +34,11 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
       <div class="profile__navigation-btns">
         <CustomButton v-for="(item, index) in profileNavigation" :key="index"
           @click="navigateTo(profileNavigation, index, item.component)" :active="item.active" :text="item.title"
-          :customStyles="{ borderRadius: '10px', padding: '5px 10px', marginBottom: '20px' }">
+          :customStyles="{ borderRadius: '10px', padding: '5px 10px', marginBottom: '20px', marginLeft: '10px', marginRight: '10px' }">
         </CustomButton>
       </div>
       <div class="clear-orders" v-if="profileNavigation[2].active">
-        <button class="clear-orders__btn">Удалить</button>
+        <button class="clear-orders__btn">Очистить историю заказов</button>
       </div>
     </nav>
     <div class="profile__content">
@@ -101,9 +101,16 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 660px) {
   .profile__navigation {
     flex-direction: column;
+  }
+
+  .profile__navigation-btns {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
