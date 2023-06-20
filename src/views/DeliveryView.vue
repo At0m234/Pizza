@@ -14,5 +14,4 @@ api.getCategories().then(({ data }) => {
 
 <template>
   <DeliveryAndPayment />
-  <pre>{{ test }}</pre>
 </template>
