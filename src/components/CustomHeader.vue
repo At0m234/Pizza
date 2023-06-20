@@ -291,7 +291,7 @@ function showLoginModal() {
 
     &:hover {
       color: var(--color-warning);
-      // transform: scale(1.15);
+      transform: scale(1.15);
     }
   }
 
@@ -454,6 +454,11 @@ function showLoginModal() {
     cursor: pointer;
     color: var(--color-warning);
     text-decoration: underline;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.25);
+    }
   }
 }
 

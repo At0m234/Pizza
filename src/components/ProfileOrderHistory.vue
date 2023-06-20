@@ -162,6 +162,7 @@ function goToMenu() {
     color: var(--color-text-black);
 
     & span {
+      transition: transform 0.2s ease-in-out;
       cursor: pointer;
       color: var(--color-warning);
 

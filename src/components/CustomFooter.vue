@@ -187,11 +187,12 @@ function onInfoClick(value: any) {
   }
 
   &__socials-link {
-    transition: opacity 0.15s ease-in-out;
+    transition: transform 0.2s ease-in-out;
     cursor: pointer;
 
     &:hover {
       opacity: 0.5;
+      transform: scale(1.25);
     }
   }
 }
@@ -216,6 +217,11 @@ function onInfoClick(value: any) {
     color: var(--color-warning);
     text-decoration: underline;
     margin-top: 20px;
+    transition: transform 0.2s ease-in-out;
+    
+    &:hover {
+      transform: scale(1.25);
+    }
   }
 }
 

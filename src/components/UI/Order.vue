@@ -88,9 +88,10 @@ const props = defineProps({
     width: 18px;
     height: 18px;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 
     &:hover {
-      transform: scale(1.25);
+      transform: scale(1.55);
     }
   }
 

@@ -304,7 +304,6 @@ function saveAddress() {
   }
 }
 
-
 .addresses {
   display: flex;
   flex-direction: column;
@@ -388,10 +387,10 @@ function saveAddress() {
   line-height: 16px;
   color: #AFAFAF;
   margin-left: 10px;
+  transition: transform 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.25);
-    transition: opacity .05s linear .05s;
     opacity: 0.7;
     color: var(--color-warning);
   }

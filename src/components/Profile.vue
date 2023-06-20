@@ -83,6 +83,7 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
   justify-content: flex-end;
   justify-self: flex-end;
   align-self: center;
+
   &__btn {
     border: none;
     background-color: transparent;
@@ -93,6 +94,7 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
     line-height: 16px;
     color: #AFAFAF;
     margin-bottom: 20px;
+    transition: transform 0.2s ease-in-out;
 
     &:hover {
       transform: scale(1.25);
