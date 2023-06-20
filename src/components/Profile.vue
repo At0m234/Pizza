@@ -63,7 +63,7 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
   &__navigation-btns {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 550px;
   }
 
   &__content {
