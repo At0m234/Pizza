@@ -35,15 +35,15 @@ const props = defineProps({
       <div class="order__details">
         <span class="order__date">{{ date }}</span>
         <span class="order__number">{{ number }}</span>
-      </div> 
+      </div>
       <div v-if="history" class="order__repeat">
-        <repeat/>
+        <repeat />
       </div>
     </div>
 
-    <div class="order__container">
+    <div class="order__container" :class="{ scrollbar: !history }">
       <OrderCard v-for="(item, index) in orderList" :key="index" :title="item.title" :count="item.count"
-        :price="item.price" :history="history"/>
+        :price="item.price" :history="history" />
     </div>
 
     <div class="order__delivery">
@@ -101,20 +101,7 @@ const props = defineProps({
     border-top: 1px solid #eaeaea;
     border-bottom: 1px solid #eaeaea;
     gap: 10px;
-    overflow-y: scroll;
-    max-height: 500px;
 
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--color-warning);
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
   }
 
   &__delivery {
@@ -147,11 +134,29 @@ const props = defineProps({
   }
 }
 
+.scrollbar {
+  max-height: 550px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-warning);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
 @media (max-width: 820px) {
   .order {
     width: 100%;
   }
 }
+
 @media (max-width: 580px) {
   .order {
     padding: 20px;
