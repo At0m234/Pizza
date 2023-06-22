@@ -110,9 +110,7 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
 
   .profile__navigation-btns {
     width: 100%;
-    // flex-direction: column;
     justify-content: center;
-    // align-items: center;
   }
 }
 </style>
