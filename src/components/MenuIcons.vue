@@ -71,12 +71,7 @@ function onMenuItemClick(value: string) {
 
 <template>
   <div class="menu">
-    <div
-      v-for="item of menuConfig"
-      :key="item.label"
-      class="menu__item"
-      @click="onMenuItemClick(item.value)"
-    >
+    <div v-for="item of menuConfig" :key="item.label" class="menu__item" @click="onMenuItemClick(item.value)">
       <component :is="item.icon" />
       <span class="menu__label">{{ item.label }}</span>
     </div>
@@ -87,8 +82,8 @@ function onMenuItemClick(value: string) {
 .menu {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  padding: 50px 100px;
+  padding: 50px;
+  width: 100%;
 
   &__item {
     display: flex;
@@ -96,6 +91,7 @@ function onMenuItemClick(value: string) {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin: 10px;
     cursor: pointer;
     color: var(--color-icon-gray);
 
@@ -110,6 +106,16 @@ function onMenuItemClick(value: string) {
 
   &__label {
     font-weight: 600;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
   }
 }
 </style>
