@@ -34,7 +34,7 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
       <div class="profile__navigation-btns">
         <CustomButton v-for="(item, index) in profileNavigation" :key="index"
           @click="navigateTo(profileNavigation, index, item.component)" :active="item.active" :text="item.title"
-          :customStyles="{ borderRadius: '10px', padding: '5px 10px', marginBottom: '20px', marginLeft: '10px', marginRight: '10px' }">
+          :customStyles="{ borderRadius: '10px', padding: '5px 10px', marginBottom: '20px', marginLeft: '5px', marginRight: '5px', }">
         </CustomButton>
       </div>
       <div class="clear-orders" v-if="profileNavigation[2].active">
@@ -63,7 +63,7 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
   &__navigation-btns {
     display: flex;
     justify-content: space-between;
-    width: 550px;
+    max-width: 500px;
   }
 
   &__content {
@@ -103,16 +103,16 @@ function navigateTo(buttons: Button[], index: number, component: Component) {
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 768px) {
   .profile__navigation {
     flex-direction: column;
   }
 
   .profile__navigation-btns {
     width: 100%;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
   }
 }
 </style>
