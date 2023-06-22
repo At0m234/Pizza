@@ -36,7 +36,7 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 160px;
+  // width: 160px;
   padding: 15px 5px;
   cursor: pointer;
   border: none;
