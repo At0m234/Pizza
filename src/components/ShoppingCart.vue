@@ -100,7 +100,7 @@ function onOrderClick() {
       </div>
     </div>
     <router-view></router-view>
-    <CustomSlaider title="Добавьте к заказу">
+    <!-- <CustomSlaider title="Добавьте к заказу">
       <ProductCard />
       <ProductCard />
       <ProductCard />
@@ -113,7 +113,7 @@ function onOrderClick() {
       <ProductCard />
       <ProductCard />
       <ProductCard />
-    </CustomSlaider>
+    </CustomSlaider> -->
   </section>
 </template>
 
@@ -122,7 +122,6 @@ function onOrderClick() {
   display: flex;
   flex-direction: column;
   max-width: 1440px;
-  box-sizing: border-box;
 
   &__order {
     display: flex;
@@ -130,33 +129,12 @@ function onOrderClick() {
     margin-bottom: 100px;
   }
 
-  &__add-to-order {
-    width: 100%;
-    overflow-x: scroll;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--color-warning);
-      /* Цвет ползунка скролла */
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: var(--color-light-gray);
-    }
-  }
-
-  &__slaider {
-    display: flex;
-  }
 }
 
 .order-frame {
   border: 1px solid var(--border-order);
   border-radius: 10px;
-  width: 750px;
+  width: 65%;
 }
 
 .place-order {
@@ -187,16 +165,19 @@ function onOrderClick() {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .shopping-cart__order {
     flex-direction: column;
     align-items: center;
   }
 
   .place-order {
-    max-width: 750px;
     width: 100%;
     margin-top: 50px;
+  }
+
+  .order-frame {
+    width: 100%;
   }
 }
 
