@@ -399,6 +399,8 @@ function saveAddress() {
 @media (max-width: 700px) {
   .add {
     &__form {
+      grid-template-columns: 256px;
+      grid-template-rows: repeat(5, auto);
       gap: 20px 30px;
     }
 
@@ -431,13 +433,6 @@ function saveAddress() {
       grid-row: 5 / span 1;
       box-sizing: border-box;
     }
-  }
-}
-
-@media (max-width: 620px) {
-  .add__form {
-    grid-template-columns: 256px;
-    grid-template-rows: repeat(5, auto);
   }
 }
 
