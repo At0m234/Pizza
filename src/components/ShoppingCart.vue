@@ -100,7 +100,7 @@ function onOrderClick() {
       </div>
     </div>
     <router-view></router-view>
-    <!-- <CustomSlaider title="Добавьте к заказу">
+    <CustomSlaider title="Добавьте к заказу">
       <ProductCard />
       <ProductCard />
       <ProductCard />
@@ -113,7 +113,7 @@ function onOrderClick() {
       <ProductCard />
       <ProductCard />
       <ProductCard />
-    </CustomSlaider> -->
+    </CustomSlaider>
   </section>
 </template>
 
