@@ -14,8 +14,8 @@ import SubmitButton from './UI/SubmitButton.vue';
       <CustomInput label="Почта" type="email" name="email" placeholder="Введите почту" :required="true" />
       <CustomInput label="Пароль" type="password" name="password" placeholder="Задайте пароль" :required="true" />
       <div class="profile-data__checkboxes">
-        <CustomCheckbox label="Согласен с пользовательским соглашением и политикой конфиденциальности" :required="true" />
-        <CustomCheckbox label="Согласен получать рекламные уведомления" />
+        <CustomCheckbox label="Согласен с пользовательским соглашением и политикой конфиденциальности" :required="true" :checked="true"/>
+        <CustomCheckbox label="Согласен получать рекламные уведомления" :checked="true"/>
         <SubmitButton text="Сохранить" :custom-styles="{ marginTop: '40px' }" />
       </div>
     </form>
