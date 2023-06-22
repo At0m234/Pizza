@@ -23,13 +23,15 @@ const props = defineProps({
   required: {
     type: Boolean,
   },
-
+  checked: {
+    type: Boolean,
+  },
 })
 </script>
 
 <template>
   <div class="checkbox__container" :style="customStyles">
-    <input class="checkbox__input" type="checkbox" :name="name" :required="required" style="inputStyles"/>
+    <input class="checkbox__input" type="checkbox" :name="name" :required="required" style="inputStyles" :checked="checked"/>
     <label class="checkbox__label" :for="name" style="labelStyles"
       >{{ label }}</label
     >

@@ -50,10 +50,12 @@ const redirectToPersonalAccount = () => {
           label="Согласен с пользовательским соглашением и политикой
             конфиденциальности"
           :required="true"
+          :checked="true"
         />
         <CustomCheckbox
           name="advertisement"
           label="Согласен получать рекламные уведомления"
+          :checked="true"
         />
 
         <SubmitButton
