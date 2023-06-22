@@ -11,7 +11,7 @@ import router from '@/router'
 const phoneInputValue = ref('')
 const sendCode = ref(false)
 const success = ref(false)
-
+const emit = defineEmits(['close'])
 const sendForCode = () => {
   if (phoneInputValue.value !== '') {
     sendCode.value = true
@@ -27,6 +27,7 @@ const submitPinCode = () => {
 }
 
 const redirectToPersonalAccount = () => {
+  emit('close')
   router.push('/profile')
 }
 </script>
@@ -34,7 +35,7 @@ const redirectToPersonalAccount = () => {
 <template>
   <div class="modal">
     <form class="modal__content" @submit.prevent="sendForCode">
-      <closeModalCross class="modal__cross" @click="$emit('close')" />
+      <closeModalCross class="modal__cross" @click="emit('close')" />
       <template v-if="!sendCode">
         <h2 class="modal__title">Введите номер телефона</h2>
         <CustomInput
@@ -63,10 +64,10 @@ const redirectToPersonalAccount = () => {
         />
       </template>
 
-      <template v-else>
+      <template v-else-if="sendCode && !success">
         <h2 class="modal__title">Введите код</h2>
         <h3 class="modal__success">
-          Код отправлен по SMS на номер: +7 (915) 488-66-66
+          Код отправлен по SMS на номер: {{ phoneInputValue }}
         </h3>
 
         <SubmitButton
@@ -76,7 +77,7 @@ const redirectToPersonalAccount = () => {
           :disabled="false"
           @click="changePhoneNumber"
         />
-        <PinCodeField/>
+        <PinCodeField />
 
         <SubmitButton
           text="Подтвердить"
@@ -86,8 +87,8 @@ const redirectToPersonalAccount = () => {
         />
       </template>
 
-      <template v-if="success">
-        <succeessImage class="modal__image"/>
+      <template v-else>
+        <succeessImage class="modal__image" />
         <h2 class="modal__success">Вы успешно авторизовались</h2>
         <SubmitButton
           text="Перейти в Личный Кабинет"
@@ -169,8 +170,7 @@ const redirectToPersonalAccount = () => {
     font-size: 14px;
     line-height: 16px;
     color: var(--color-text-black);
-    margin-top: 20px;
+    margin: 20px 0;
   }
 }
-
 </style>

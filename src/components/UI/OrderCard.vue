@@ -33,7 +33,7 @@ const props = defineProps({
     </div>
 
     <span class="food__price">{{ props.price }} &#8381;</span>
-    <removeOrder class="card__remove" :history=" history " v-if="!history"/>
+    <removeOrder class="card__remove" :history="history" v-if="!history" />
   </div>
 </template>
 
@@ -43,7 +43,8 @@ const props = defineProps({
   justify-content: space-between;
   align-items: center;
   position: relative;
-  box-shadow: 8px 11px 10px 2px rgba(34, 60, 80, 0.25);
+  //box-shadow: 8px 11px 10px 2px rgba(34, 60, 80, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
   padding: 10px;
   transition: transform 0.1s ease-in-out;
@@ -88,4 +89,5 @@ const props = defineProps({
   &__title {
     margin-bottom: 6px;
   }
-}</style>
+}
+</style>
