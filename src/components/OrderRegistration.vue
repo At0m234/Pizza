@@ -295,6 +295,7 @@ function toggleButtonActive(buttons: Button[], index: number) {
 .order {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 
   &__title {
     font-style: normal;
@@ -321,7 +322,7 @@ function toggleButtonActive(buttons: Button[], index: number) {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-order);
-    width: 70%;
+    width: 1000px;
     min-width: 350px;
     border-radius: 10px;
     padding: 35px;
@@ -437,15 +438,11 @@ function toggleButtonActive(buttons: Button[], index: number) {
   }
 }
 
-@media (max-width: 744px) {
+@media (max-width: 1024px) {
   .order__form {
+    width: 100%;
     padding: 15px;
   }
 }
 
-@media (max-width: 690px) {
-  .order__form {
-    padding: 5px;
-  }
-}
 </style>
