@@ -8,6 +8,7 @@ import { useGlobalStore } from '@/stores/global'
 // import vk from '@/assets/icon/footer/vk.svg?component'
 import LoginModal from './UI/LoginModal.vue'
 import CallMeModal from './UI/CallMeModal.vue'
+const store = useGlobalStore()
 
 const loginModalVisible = ref(false)
 const сallMeModalVisible = ref(false)
@@ -16,8 +17,7 @@ const globalStore = useGlobalStore()
 const selectedLabel = computed(() => {
   return globalStore.state.selectedMenuItem
 })
-
-const menu = [
+const menuBasic = [
   { label: 'Пицца', value: 'pizza' },
   { label: 'Вок', value: 'wok' },
   { label: 'Супы', value: 'soup' },
@@ -29,6 +29,9 @@ const menu = [
   { label: 'Напитки', value: 'drinks' },
   { label: 'Магазин', value: 'shop' },
 ]
+
+const menu = store.state.categories || menuBasic
+
 const info = [
   { label: 'Доставка и оплата', value: 'delivery' },
   { label: 'О компании', value: 'about' },
@@ -60,7 +63,6 @@ function onInfoClick(value: any) {
   globalStore.state.selectedMenuItem = value
   router.push('/' + value)
 }
-
 </script>
 
 <template>
@@ -69,8 +71,13 @@ function onInfoClick(value: any) {
       <div class="category category_type_menu">
         <h3 class="category__title">Меню</h3>
         <ul class="category__wrapper category__menu">
-          <li v-for="item of menu" class="category__item" :class="{ selected: selectedLabel === item.value }"
-            :key="item.value" @click="onInfoClick(item.value)">
+          <li
+            v-for="item of menu"
+            class="category__item"
+            :class="{ selected: selectedLabel === item.value }"
+            :key="item.value"
+            @click="onInfoClick(item.value)"
+          >
             {{ item.label }}
           </li>
         </ul>
@@ -78,8 +85,13 @@ function onInfoClick(value: any) {
       <div class="category category_type_info">
         <h3 class="category__title">Информация</h3>
         <ul class="category__wrapper">
-          <li v-for="item of info" class="category__item" :key="item.value" @click="onInfoClick(item.value)"
-            :class="{ selected: selectedLabel === item.value }">
+          <li
+            v-for="item of info"
+            class="category__item"
+            :key="item.value"
+            @click="onInfoClick(item.value)"
+            :class="{ selected: selectedLabel === item.value }"
+          >
             {{ item.label }}
           </li>
         </ul>
@@ -87,9 +99,17 @@ function onInfoClick(value: any) {
       <div class="category category_type_personal-account">
         <h3 class="category__title">Личный кабинет</h3>
         <ul class="category__wrapper">
-          <li v-for="item in personal" class="category__item" :key="item.value"
-            @click="item.label === 'Вход в личный кабинет' ? showLoginModal() : onInfoClick(item.value)"
-            :class="{ selected: selectedLabel === item.value }">
+          <li
+            v-for="item in personal"
+            class="category__item"
+            :key="item.value"
+            @click="
+              item.label === 'Вход в личный кабинет'
+                ? showLoginModal()
+                : onInfoClick(item.value)
+            "
+            :class="{ selected: selectedLabel === item.value }"
+          >
             {{ item.label }}
           </li>
         </ul>
@@ -112,7 +132,9 @@ function onInfoClick(value: any) {
             </a>
           </div> -->
 
-          <span class="phone__feedback" @click="showCallMeModal">Перезвоните мне</span>
+          <span class="phone__feedback" @click="showCallMeModal"
+            >Перезвоните мне</span
+          >
         </div>
       </div>
     </div>
@@ -120,7 +142,10 @@ function onInfoClick(value: any) {
       <LoginModal v-if="loginModalVisible" @close="loginModalVisible = false" />
     </transition>
     <transition name="modal">
-      <CallMeModal v-if="сallMeModalVisible" @close="сallMeModalVisible = false" />
+      <CallMeModal
+        v-if="сallMeModalVisible"
+        @close="сallMeModalVisible = false"
+      />
     </transition>
   </footer>
 </template>
@@ -218,7 +243,7 @@ function onInfoClick(value: any) {
     text-decoration: underline;
     margin-top: 20px;
     transition: transform 0.2s ease-in-out;
-    
+
     &:hover {
       transform: scale(1.25);
     }
