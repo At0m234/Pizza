@@ -41,11 +41,11 @@ function moveSlider(direction: 'left' | 'right'): void {
       </div>
     </div>
 
-    <!-- <div class="slaider__body"> -->
     <div class="slaider__content" ref="sliderContent">
-      <slot />
+      <div class="slaider__body">
+        <slot />
+      </div>
     </div>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -53,13 +53,14 @@ function moveSlider(direction: 'left' | 'right'): void {
 .slaider {
   display: flex;
   flex-direction: column;
-  max-width: 1360px;
+  width: 100%;
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
+    width: 100%;
   }
 
   &__title {
@@ -74,6 +75,7 @@ function moveSlider(direction: 'left' | 'right'): void {
   &__controls {
     display: flex;
     justify-content: space-between;
+    margin-right: 30px;
 
     &:hover {
       fill: var(--color-warning);
@@ -82,48 +84,68 @@ function moveSlider(direction: 'left' | 'right'): void {
 
   &__prev-btn {
     margin-right: 10px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     fill: black;
-    transition: fill 0.3s ease-in-out;
     transition: transform 0.15s ease-in-out;
 
     &:hover {
-      fill: var(--color-warning);
       transform: scale(1.2);
+      color: var(--color-warning);
+
+      svg {
+        fill: var(--color-warning)
+      }
     }
   }
 
   &__forw-btn {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     fill: black;
-    transition: fill 0.3s ease-in-out;
     transition: transform 0.1s ease-in-out;
 
     &:hover {
-      fill: var(--color-warning);
       transform: scale(1.2);
+      color: var(--color-warning);
+
+      svg {
+        fill: var(--color-warning)
+      }
     }
   }
 
   &__content {
     display: flex;
+    width: 100%;
+    overflow-y: hidden;
     overflow-x: scroll;
+    position: relative;
+    margin: 0;
+    height: 650px;
 
     &::-webkit-scrollbar {
       height: 8px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: var(--color-warning); /* Цвет ползунка скролла */
+      background-color: var(--color-warning);
     }
 
     &::-webkit-scrollbar-track {
       background-color: transparent;
     }
+  }
+
+  &__body {
+    display: flex;
+    flex-wrap: nowrap;
+    width: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 }
 </style>
