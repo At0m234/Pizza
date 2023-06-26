@@ -205,9 +205,7 @@ function showLoginModal() {
             <select class="burger-menu__select" v-if="item.value === 'menu'" v-model="selectedItem"
               @change="onMenuSelect(selectedItem)">
               <option class="burger-menu__option" v-for="item in menuConfig" :key="item.value" :value="item.value">
-                <a>
-                  {{ item.label }}
-                </a>
+                {{ item.label }}
               </option>
             </select>
           </span>
