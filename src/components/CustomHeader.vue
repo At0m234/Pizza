@@ -291,7 +291,6 @@ function showLoginModal() {
 
     &:hover {
       color: var(--color-warning);
-      transform: scale(1.15);
     }
   }
 
@@ -329,6 +328,9 @@ function showLoginModal() {
     border: none;
     z-index: 3;
     border-radius: 15px;
+    background-color: transparent;
+    min-width: 150px;
+    text-align: center;
 
     &:focus {
       outline: none;
