@@ -328,6 +328,11 @@ function showLoginModal() {
     border-radius: 15px;
     background-color: transparent;
     text-align: center;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
   }
 
   &__option {
