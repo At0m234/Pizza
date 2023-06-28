@@ -32,17 +32,17 @@ function moveSlider(direction: 'left' | 'right'): void {
 </script>
 
 <template>
-  <div class="slaider">
-    <div class="slaider__header">
-      <h2 class="slaider__title">{{ title }}</h2>
-      <div class="slaider__controls">
-        <previousArrow class="slaider__prev-btn" @click="moveSlider('left')" />
-        <forwardArrow class="slaider__forw-btn" @click="moveSlider('right')" />
+  <div class="slider" >
+    <div class="slider__header">
+      <h2 class="slider__title">{{ title }}</h2>
+      <div class="slider__controls">
+        <previousArrow class="slider__prev-btn" @click="moveSlider('left')" />
+        <forwardArrow class="slider__forw-btn" @click="moveSlider('right')" />
       </div>
     </div>
 
-    <div class="slaider__content" ref="sliderContent">
-      <div class="slaider__body">
+    <div class="slider__content" ref="sliderContent">
+      <div class="slider__body">
         <slot />
       </div>
     </div>
@@ -50,7 +50,7 @@ function moveSlider(direction: 'left' | 'right'): void {
 </template>
 
 <style lang="scss" scoped>
-.slaider {
+.slider {
   display: flex;
   flex-direction: column;
   width: 100%;
