@@ -327,23 +327,14 @@ function showLoginModal() {
     z-index: 3;
     border-radius: 15px;
     background-color: transparent;
-    min-width: 150px;
     text-align: center;
-
-    &:focus {
-      outline: none;
-      border: none;
-    }
   }
 
   &__option {
     display: flex;
     background: #ffffff;
-    width: 50%;
-    font-style: normal;
     font-weight: 700;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 16px;
     color: var(--color-text-gray);
     cursor: pointer;
 
@@ -360,6 +351,11 @@ function showLoginModal() {
     &:checked {
       background-color: transparent;
       color: var(--color-warning);
+    }
+
+    &:visited {
+      background-color: transparent;
+      color: var(--color-text-gray);
     }
   }
 }
