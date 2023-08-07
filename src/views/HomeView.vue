@@ -4,7 +4,7 @@ import MenuIcons from '@/components/MenuIcons.vue'
 import ProductCategory from '@/components/ProductCategory.vue'
 </script>
 <template>
-  <!--  <custom-carousel/>-->
+  <custom-carousel />
   <menu-icons />
-  <!--  <product-category/>-->
+  <product-category />
 </template>
